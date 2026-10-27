@@ -6,7 +6,7 @@ The challenge's second question: when one item has several goods receipts and se
 
 1. A cancellation reverses the most recent open document of its kind. Cancel Goods Receipt removes the latest receipt; Cancel Invoice Receipt removes the latest invoice.
 2. The k-th surviving invoice pairs with the k-th surviving goods receipt. On invoice-before-GR items the invoice may come first, giving a negative receipt-to-invoice lag.
-3. Events are applied in time order. A Clear Invoice that follows a Cancel Invoice Receipt, before any new invoice is recorded, is the clearing of the reversal and stays unmatched; it cannot take an older open invoice. Any other clearing pairs with the earliest invoice still open at that moment. If a cancelled invoice had already been cleared, that clearing also becomes unmatched.
+3. Events are applied in time order. Each Cancel Invoice Receipt creates one reversal document, so the next Clear Invoice after it (if no new invoice is recorded first) is that reversal's clearing and stays unmatched; it cannot take an older open invoice. Each cancellation absorbs at most one clearing. Every other clearing pairs with the earliest invoice still open at that moment. If a cancelled invoice had already been cleared, that clearing also becomes unmatched.
 4. Record Subsequent Invoice counts as an invoice (it can be cleared) but takes no goods-receipt slot.
 5. Payable time = the later of the paired receipt and invoice. Time to pay = clearing minus payable time. For 3-way items, only invoices paired with a receipt enter the timing figures.
 

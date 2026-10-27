@@ -34,3 +34,24 @@ Undocumented: the rule includes "Record Subsequent Invoice" as an invoice; match
 - Causal/speculative: "the approval it represents came too late to stop anything"; "which points to price or quantity mismatches" (the same memo says block reasons are not in the log); "The system-enforced part ... works" (0 count is consistent, not proof of enforcement).
 - No ERP vendor named (grep SAP/Oracle: none).
 Not checked: block-effect medians (37.5/24.1/50.8/37.9), variants claim (7 variants / 80%), 4.98% value share.
+
+## Pass 2 (commit f827595)
+
+Scripts: /private/tmp/claude-501/-Users-tarangjammalamadaka/08158cf1-a8e5-449d-a916-bd0a56aa8ff2/scratchpad/{p2match.py,sod2.py,mutate_copy.py}. p2match.py is written from the matching.md rule text and has two readings of rule 3: `flag` (word for word) and `counter` (one unmatched clearing per cancellation).
+
+1. VERIFIED. `make gate` -> `Ran 23 tests ... OK`, `reconcile ok`, `memo ok: 67 numbers traced`, `boot ok`, EXIT=0; the tree is clean afterwards.
+2. Matching.
+   - REFUTED (doc vs code, narrow): rule 3 says "A Clear Invoice that follows a Cancel Invoice Receipt, before any new invoice is recorded, is the clearing of the reversal and stays unmatched". The code (`pending_reversals += 1` / `-= 1`) marks only ONE clearing per cancellation as unmatched. Any later clearings before a new invoice still take older open invoices. Example 4507000238_00150: IR 01-23, IR 02-10, Cancel IR 02-22, then Clear 03-08, 03-15, 04-05. Read word for word, all 3 clearings are unmatched; the code leaves only 1 unmatched. 230 items differ between the two readings.
+   - With the doc read word for word: 6,169 items, 7,554 unmatched clearings, 1,850 items, naive median 94.07, 6,454 invoices, per-invoice median 34.76, block medians 38.5/24.1.
+   - The suite stays GREEN when I mutate the code to the word-for-word reading (`pending_reversals = 1`, no decrement), so no test pins this choice.
+   - Rules 1, 2, 4 and 5 match the code.
+   - VERIFIED, published numbers under the code's (counter) reading: 6,169 items, 7,313 clearings; 1,860 items; naive median 94.09 (94.1); 6,502 invoices; median 34.32 (34.3).
+3. VERIFIED. Invoice + clear: 169,525 items, 2,526 conflicts (1.49%), 15 users, top user_015 at 31.12%. Create + receive: 3,825 of 183,031 (2.09%), 46 users. Create + invoice: 0 conflicts out of 187,369.
+4. VERIFIED. Block medians: after GR 38.9 (n 3,193) vs 24.1 (n 9,696); before GR 50.85 (exact 50.8476, so 50.8) vs 37.92 (n 48,124 / 125,135). Throughput: 28.0 (n 12,889) and 42.17 (n 173,259), matching out/throughput.csv.
+5. VERIFIED. Nine planted bugs: run on a scratch copy (mutate.py chdirs into the real repo and rewrites its files, so I pointed a copy of it at /scratchpad/mut2). Result: all 9 RED, restored GREEN, and the copy is identical to the repo src afterwards. The after-the-fact value share is 4.98%, recomputed.
+   Remaining wording issues, minor: "Clearing runs weekly" is stated as fact on a 75% Thursday share; "would report recurring-billing items as badly late when they are not" asserts lateness is not real.
+   Still not checked: README "Seven variants cover 80% of the 221,010 invoice-before-GR items".
+
+**Status:** DONE_WITH_CONCERNS
+**Summary:** Gate green (23 tests, 9/9 mutations red), and every published Pass-2 number reproduces exactly with my own code under the code's reading of rule 3. matching.md rule 3 describes a different behaviour from the code, and the tests do not tell the two apart.
+**Concerns/Blockers:** REFUTED: matching.md rule 3 wording vs code (one unmatched clearing per cancellation; 230 items, 241 clearings differ). UNVERIFIABLE: README variants claim. No cross-model review run.

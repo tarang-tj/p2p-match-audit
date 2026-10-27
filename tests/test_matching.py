@@ -49,6 +49,14 @@ class MatchingTest(unittest.TestCase):
         self.assertEqual(r["unmatched_clears"], 1)
         self.assertEqual(r["pairs"], [{"gr": ts(1), "ir": ts(2), "clear": None}])
 
+    def test_one_cancellation_absorbs_only_one_clearing(self):
+        # IR1, IR2, cancel IR2, then two clears: the first clears the
+        # reversal, the second pays IR1.
+        r = match_case([(ts(1), GR), (ts(2), IR), (ts(3), IR), (ts(4), A.CANCEL_IR),
+                        (ts(5), CLR), (ts(6), CLR)])
+        self.assertEqual(r["unmatched_clears"], 1)
+        self.assertEqual(r["pairs"], [{"gr": ts(1), "ir": ts(2), "clear": ts(6)}])
+
     def test_subsequent_invoice_takes_no_receipt_slot(self):
         r = match_case([(ts(1), GR), (ts(2), IR), (ts(3), A.SUBSEQUENT_INVOICE),
                         (ts(5), GR), (ts(6), IR)])

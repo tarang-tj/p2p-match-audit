@@ -123,7 +123,7 @@
     }
     const pr = site.payment_runs, nv = site.naive_vs_matched;
     const n = $("timeNotes");
-    para(n, `<strong>Payment is a weekly run.</strong> ${pr.weekday_share_pct.Thursday}% of clearings happen on a Thursday, and one account ` +
+    para(n, `<strong>Payment looks like a weekly run.</strong> ${pr.weekday_share_pct.Thursday}% of clearings happen on a Thursday, and one account ` +
       `performs ${pr.top_clearing_user_share_pct}% of all clearings, on just ${pr.top_clearing_user_distinct_days} days.`);
     const gap = (flow) => {
       const b = rows.find((r) => r.flow === flow && r.blocked), u = rows.find((r) => r.flow === flow && !r.blocked);

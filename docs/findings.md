@@ -34,11 +34,11 @@ Action: remove the clearing permission from the 15 invoice clerks, or route thei
 
 ## Payment timing
 
-Clearing runs weekly: 75.06% of clearings happen on a Thursday, and one account performs 85.58% of all clearings, on just 94 days. Once an invoice is payable (the later of its receipt and its invoice date), the median wait to clearing is 28.0 days on invoice-after-GR items and 42.2 days on invoice-before-GR items.
+Clearing looks like a weekly payment run: 75.06% of clearings happen on a Thursday, and one account performs 85.58% of all clearings, on just 94 days. Once an invoice is payable (the later of its receipt and its invoice date), the median wait to clearing is 28.0 days on invoice-after-GR items and 42.2 days on invoice-before-GR items.
 
 Invoices on items where a payment block was removed clear later: 38.9 days against 24.1 on invoice-after-GR items, and 50.8 against 37.9 on invoice-before-GR items. The log does not record why a block was set, or which invoice it held, so this is an association, not a cause.
 
-Method matters here. On 1,860 items with several paid invoices, measuring first receipt to last payment gives a median of 94.1 days. Matching each of their 6,502 invoices to its own receipt and payment gives a median wait of 34.3 days. A dashboard built on the first method would report recurring-billing items as badly late when they are not.
+Method matters here. On 1,860 items with several paid invoices, measuring first receipt to last payment gives a median of 94.1 days. Matching each of their 6,502 invoices to its own receipt and payment gives a median wait of 34.3 days. A dashboard built on the first method would make recurring-billing items look months late even where each invoice was paid within weeks.
 
 ## What this data cannot show
 

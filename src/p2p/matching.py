@@ -9,9 +9,9 @@ pairing uses order and time only:
 2. The k-th surviving invoice pairs with the k-th surviving goods receipt.
    For invoice-before-GR items the invoice may come first; the lag is then
    negative and means "invoice waited for goods".
-3. Events are applied in time order. A Clear Invoice that follows a Cancel
-   Invoice Receipt, before any new invoice is recorded, clears the reversal
-   and stays unmatched. Any other clear pairs with the earliest invoice
+3. Events are applied in time order. Each Cancel Invoice Receipt creates
+   one reversal document; the next Clear Invoice after it (before any new
+   invoice) clears that reversal and stays unmatched. Any other clear pairs with the earliest invoice
    still open at that moment. Record Subsequent Invoice is an invoice but
    takes no goods-receipt slot.
 
