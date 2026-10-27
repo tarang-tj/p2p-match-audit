@@ -1,6 +1,8 @@
 """Each control against hand-built items whose correct answer is known."""
 import unittest
 
+import pandas as pd
+
 from p2p import activities as A
 from p2p.controls import evaluate, sod_conflict_users
 from p2p.features import build_case_facts, role_users
@@ -72,7 +74,7 @@ class ControlsTest(unittest.TestCase):
 
     def test_clean_item_trips_nothing(self):
         row = self.flags.loc["clean"]
-        self.assertFalse(any(v is True for v in row))
+        self.assertFalse((row == True).any())  # noqa: E712 (numpy and Python bools)
 
     def test_cleared_without_gr_counts_reversed_receipts(self):
         self.assertEqual(self.flagged("cleared_without_gr"), ["gr_reversed_paid", "no_gr_paid"])
@@ -95,6 +97,9 @@ class ControlsTest(unittest.TestCase):
     def test_sod_needs_a_human(self):
         for key in ("sod_create_and_receive", "sod_create_and_invoice", "sod_invoice_and_clear"):
             self.assertEqual(self.flagged(key), ["sod"], key)
+        # Denominator: only items where a person did both steps.
+        self.assertTrue(pd.isna(self.flags.loc["batch_only", "sod_create_and_receive"]))
+        self.assertIs(self.flags.loc["clean", "sod_create_and_receive"], False)
         users = sod_conflict_users(self.roles, "creators", "receivers")
         self.assertEqual(users.to_dict(), {"user_9": 1})
 

@@ -11,7 +11,7 @@ from pathlib import Path
 import pandas as pd
 
 from p2p import activities as A
-from p2p.matching import match_case
+from p2p.matching import _RELEVANT, match_case
 from p2p.variants import CORE
 
 STORIES = [
@@ -53,6 +53,11 @@ def main() -> None:
     cases = pd.read_parquet("data/cases.parquet").set_index("case_id")
     events = pd.read_parquet("data/events.parquet")
     core = events[events["activity"].isin(CORE)]
+    rel = events[events["activity"].isin(_RELEVANT)]
+
+    def matched(cid):
+        ev = rel[rel["case_id"] == cid].sort_values(["timestamp", "seq"], kind="mergesort")
+        return match_case(list(zip(ev["timestamp"], ev["activity"])))
     n_core = core.groupby("case_id").size()
 
     examples = []
@@ -62,15 +67,14 @@ def main() -> None:
         if key == "recurring":
             # among long items, the first whose matching clears >= 3 invoices
             for c in sorted(cid):
-                ev = core[core["case_id"] == c].sort_values(["timestamp", "seq"])
-                m = match_case(list(zip(ev["timestamp"], ev["activity"])))
+                m = matched(c)
                 if sum(p["clear"] is not None for p in m["pairs"]) >= 3 and cases.loc[c, "item_category"] \
                         .startswith("3-way"):
                     cid = c
                     break
         used.add(cid)
         ev = core[core["case_id"] == cid].sort_values(["timestamp", "seq"], kind="mergesort")
-        m = match_case(list(zip(ev["timestamp"], ev["activity"])))
+        m = matched(cid)
         row = flags.loc[cid]
         tripped = [c for c in flags.columns if c != "flow" and row[c] == True]  # noqa: E712
         examples.append({

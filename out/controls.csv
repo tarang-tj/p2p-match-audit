@@ -10,6 +10,6 @@ price_change_after_invoice,Price changed after an invoice was recorded,purchasin
 invoice_cancelled,At least one invoice receipt cancelled,rework,251734,6471,2.57,113793628.0,11.42
 gr_cancelled,At least one goods receipt cancelled,rework,251734,2470,0.98,67839986.0,6.81
 payment_block_removed,Payment block removed manually or by batch,process,251734,55839,22.18,281470191.0,28.24
-sod_create_and_receive,Same person created the PO item and recorded its goods receipt,segregation of duties,251734,3825,1.52,40423066.0,4.06
-sod_create_and_invoice,Same person created the PO item and recorded its invoice,segregation of duties,251734,0,0.0,0.0,0.0
-sod_invoice_and_clear,Same person recorded the invoice and cleared it for payment,segregation of duties,251734,2526,1.0,61485108.0,6.17
+sod_create_and_receive,Same person created the PO item and recorded its goods receipt,segregation of duties,183031,3825,2.09,40423066.0,4.06
+sod_create_and_invoice,Same person created the PO item and recorded its invoice,segregation of duties,187369,0,0.0,0.0,0.0
+sod_invoice_and_clear,Same person recorded the invoice and cleared it for payment,segregation of duties,169525,2526,1.49,61485108.0,6.17

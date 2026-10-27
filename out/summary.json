@@ -2,25 +2,25 @@
   "block_effect": [
     {
       "blocked": false,
-      "cleared_invoices": 9776,
+      "cleared_invoices": 9696,
       "flow": "3way_after_gr",
       "ready_to_clear_median_days": 24.1
     },
     {
       "blocked": true,
-      "cleared_invoices": 3334,
+      "cleared_invoices": 3193,
       "flow": "3way_after_gr",
-      "ready_to_clear_median_days": 37.5
+      "ready_to_clear_median_days": 38.9
     },
     {
       "blocked": false,
-      "cleared_invoices": 125283,
+      "cleared_invoices": 125135,
       "flow": "3way_before_gr",
       "ready_to_clear_median_days": 37.9
     },
     {
       "blocked": true,
-      "cleared_invoices": 48550,
+      "cleared_invoices": 48124,
       "flow": "3way_before_gr",
       "ready_to_clear_median_days": 50.8
     }
@@ -817,17 +817,17 @@
       "value_share_pct": 28.24
     },
     {
-      "applicable_items": 251734,
+      "applicable_items": 183031,
       "control": "sod_create_and_receive",
       "exceptions": 3825,
       "family": "segregation of duties",
       "po_value_eur": 40423066.0,
-      "rate_pct": 1.52,
+      "rate_pct": 2.09,
       "title": "Same person created the PO item and recorded its goods receipt",
       "value_share_pct": 4.06
     },
     {
-      "applicable_items": 251734,
+      "applicable_items": 187369,
       "control": "sod_create_and_invoice",
       "exceptions": 0,
       "family": "segregation of duties",
@@ -837,12 +837,12 @@
       "value_share_pct": 0.0
     },
     {
-      "applicable_items": 251734,
+      "applicable_items": 169525,
       "control": "sod_invoice_and_clear",
       "exceptions": 2526,
       "family": "segregation of duties",
       "po_value_eur": 61485108.0,
-      "rate_pct": 1.0,
+      "rate_pct": 1.49,
       "title": "Same person recorded the invoice and cleared it for payment",
       "value_share_pct": 6.17
     }
@@ -879,15 +879,17 @@
     "user_000": 0.9931
   },
   "matching": {
-    "invoices_cleared": 187240,
+    "invoices_cleared": 187080,
     "invoices_surviving": 222698,
-    "invoices_with_gr": 219770,
-    "items_with_unmatched_clears": 4524
+    "invoices_with_gr": 219729,
+    "items_with_unmatched_clears": 6169,
+    "unmatched_clears": 7313
   },
   "naive_vs_matched": {
-    "items_with_2plus_cleared_invoices": 1915,
-    "matched_median_days": 32.1,
-    "naive_median_days": 94.0
+    "invoices_on_those_items": 6502,
+    "items_with_2plus_cleared_invoices": 1860,
+    "matched_median_days": 34.3,
+    "naive_median_days": 94.1
   },
   "payment_block_by_flow": [
     {
@@ -944,15 +946,17 @@
   },
   "sod_concentration": {
     "sod_create_and_invoice": {
+      "conflicting_items": 0,
       "conflicting_user_items": 0,
       "distinct_users": 0,
-      "top1_share_pct": 0.0,
+      "top1_share_of_items_pct": 0.0,
       "top_users": []
     },
     "sod_create_and_receive": {
+      "conflicting_items": 3825,
       "conflicting_user_items": 3825,
       "distinct_users": 46,
-      "top1_share_pct": 26.17,
+      "top1_share_of_items_pct": 26.17,
       "top_users": [
         [
           "user_138",
@@ -977,9 +981,10 @@
       ]
     },
     "sod_invoice_and_clear": {
+      "conflicting_items": 2526,
       "conflicting_user_items": 2628,
       "distinct_users": 15,
-      "top1_share_pct": 29.91,
+      "top1_share_of_items_pct": 31.12,
       "top_users": [
         [
           "user_015",
@@ -1022,7 +1027,7 @@
       "ready_to_clear_days_p90": 21.9
     },
     {
-      "cleared_invoices": 13110,
+      "cleared_invoices": 12889,
       "flow": "3way_after_gr",
       "gr_to_ir_days_median": 20.0,
       "gr_to_ir_days_p90": 69.2,
@@ -1033,14 +1038,14 @@
       "ready_to_clear_days_p90": 80.0
     },
     {
-      "cleared_invoices": 173833,
+      "cleared_invoices": 173259,
       "flow": "3way_before_gr",
       "gr_to_ir_days_median": 8.8,
-      "gr_to_ir_days_p90": 45.2,
-      "ir_to_clear_days_median": 42.2,
+      "gr_to_ir_days_p90": 45.1,
+      "ir_to_clear_days_median": 42.3,
       "ir_to_clear_days_p90": 97.7,
       "label": "3-way, invoice before GR",
-      "ready_to_clear_days_median": 42.1,
+      "ready_to_clear_days_median": 42.2,
       "ready_to_clear_days_p90": 97.2
     }
   ],

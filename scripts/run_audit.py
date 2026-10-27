@@ -56,7 +56,7 @@ def main() -> None:
                          "time_window": data_quality.time_window(events, facts),
                          "users": data_quality.users(events)},
         "controls": controls.to_dict(orient="records"),
-        "sod_concentration": summarize.sod_concentration(roles),
+        "sod_concentration": summarize.sod_concentration(roles, flags),
         "sod_including_interface_accounts": {
             k: int((flags_raw[k] == True).sum())  # noqa: E712
             for k in ("sod_create_and_receive", "sod_create_and_invoice", "sod_invoice_and_clear")},
@@ -72,8 +72,8 @@ def main() -> None:
         "matching": {"invoices_surviving": int(len(matched)),
                      "invoices_cleared": int(matched["clear"].notna().sum()),
                      "invoices_with_gr": int(matched["gr"].notna().sum()),
-                     "items_with_unmatched_clears": int(
-                         (matched.groupby("case_id")["case_unmatched_clears"].first() > 0).sum())},
+                     "items_with_unmatched_clears": int((matched.attrs["unmatched_clears"] > 0).sum()),
+                     "unmatched_clears": int(matched.attrs["unmatched_clears"].sum())},
         "variants": variants.coverage(variants.variants(events, facts), facts),
         "breakdowns": breakdowns,
     }

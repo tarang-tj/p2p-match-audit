@@ -41,10 +41,28 @@ class MatchingTest(unittest.TestCase):
         self.assertEqual(r["unmatched_clears"], 1)
         self.assertEqual(r["pairs"], [{"gr": ts(1), "ir": ts(5, 12), "clear": ts(8)}])
 
+    def test_reversal_clear_does_not_take_an_older_open_invoice(self):
+        # IR1 open, IR2 recorded then reversed, the reversal is cleared.
+        # IR1 must stay open; the clear is unmatched.
+        r = match_case([(ts(1), GR), (ts(2), IR), (ts(3), IR), (ts(4), A.CANCEL_IR),
+                        (ts(4, 11), CLR)])
+        self.assertEqual(r["unmatched_clears"], 1)
+        self.assertEqual(r["pairs"], [{"gr": ts(1), "ir": ts(2), "clear": None}])
+
+    def test_subsequent_invoice_takes_no_receipt_slot(self):
+        r = match_case([(ts(1), GR), (ts(2), IR), (ts(3), A.SUBSEQUENT_INVOICE),
+                        (ts(5), GR), (ts(6), IR)])
+        self.assertEqual([p["gr"] for p in r["pairs"]], [ts(1), None, ts(5)])
+
     def test_cancelled_gr_removes_latest_receipt(self):
         r = match_case([(ts(1), GR), (ts(2), GR), (ts(3), A.CANCEL_GR), (ts(4), IR)])
         self.assertEqual(r["surviving_gr"], 1)
         self.assertEqual(r["pairs"][0]["gr"], ts(1))
+
+    def test_clear_cannot_pay_an_invoice_recorded_later(self):
+        r = match_case([(ts(1), GR), (ts(2), CLR), (ts(3), IR)])
+        self.assertEqual(r["unmatched_clears"], 1)
+        self.assertIsNone(r["pairs"][0]["clear"])
 
     def test_open_invoice_has_no_clear(self):
         r = match_case([(ts(1), GR), (ts(2), IR)])

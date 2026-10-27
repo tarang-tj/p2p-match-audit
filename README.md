@@ -28,7 +28,7 @@ python3 -m http.server -d web 8000   # open http://localhost:8000
 | Step | What it proves |
 |---|---|
 | lint | flake8 over src, scripts, tests |
-| test | 20 unit tests on hand-built items with known answers. Seven planted bugs (ignoring GR reversals, UTC instead of local dates, skipping invoice cancellations, and others) each turn the suite red |
+| test | 23 unit tests on hand-built items with known answers. Nine planted bugs (ignoring GR reversals, UTC instead of local dates, skipping invoice cancellations, letting a reversal clearing take an older invoice, and others) each turn the suite red |
 | audit | Rebuilds every output from the parquet files; byte-identical across runs |
 | reconcile | Parsed log equals the publisher's stated counts exactly; each item lands in exactly one flow; no control has more exceptions than items |
 | memo | Every number in docs/findings.md traces to out/summary.json |

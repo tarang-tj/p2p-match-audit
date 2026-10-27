@@ -60,6 +60,8 @@ def by_dimension(flags: pd.DataFrame, facts: pd.DataFrame, control: str,
 def throughput_table(matched: pd.DataFrame) -> pd.DataFrame:
     """Median and P90 lags (days) per flow for matched, cleared invoices."""
     done = matched[matched["clear"].notna()]
+    three_way = done["flow"].isin([A.FLOW_3WAY_AFTER, A.FLOW_3WAY_BEFORE])
+    done = done[~three_way | done["gr"].notna()]  # 3-way: payable needs a receipt
     rows = []
     for flow, g in done.groupby("flow"):
         row = {"flow": flow, "label": A.FLOW_LABELS[flow], "cleared_invoices": len(g)}
@@ -77,35 +79,37 @@ def naive_vs_matched(matched: pd.DataFrame, naive: pd.Series) -> Dict:
     Compared on items with 2+ cleared invoices, where the two methods differ.
     """
     done = matched[matched["clear"].notna() & matched["gr"].notna()]
-    per_item = done.groupby("case_id").agg(n=("k", "size"),
-                                           matched_days=("ready_to_clear_days", "median"))
-    multi = per_item[per_item["n"] >= 2].join(naive.rename("naive_days"))
-    multi = multi.dropna()
+    n = done.groupby("case_id").size()
+    items = n[n >= 2].index.intersection(naive.dropna().index)
+    inv = done[done["case_id"].isin(items)]
     return {
-        "items_with_2plus_cleared_invoices": int(len(multi)),
-        "naive_median_days": round(float(multi["naive_days"].median()), 1),
-        "matched_median_days": round(float(multi["matched_days"].median()), 1),
+        "items_with_2plus_cleared_invoices": int(len(items)),
+        "invoices_on_those_items": int(len(inv)),
+        "naive_median_days": round(float(naive.loc[items].median()), 1),
+        "matched_median_days": round(float(inv["ready_to_clear_days"].median()), 1),
     }
 
 
-def sod_concentration(roles: pd.DataFrame) -> Dict[str, Dict]:
-    """Top users behind each SoD conflict and the share they account for."""
+def sod_concentration(roles: pd.DataFrame, flags: pd.DataFrame) -> Dict[str, Dict]:
+    """Top users behind each SoD conflict; top1 share is of conflicting items."""
     out = {}
     for key, (left, right, _) in SOD_PAIRS.items():
         users = sod_conflict_users(roles, left, right)
-        total = int(users.sum())
+        items = int((flags[key] == True).sum())  # noqa: E712
         top = users.head(5)
-        out[key] = {"conflicting_user_items": total,
+        out[key] = {"conflicting_items": items,
+                    "conflicting_user_items": int(users.sum()),
                     "distinct_users": int(len(users)),
                     "top_users": [[u, int(n)] for u, n in top.items()],
-                    "top1_share_pct": _pct(top.iloc[0], total) if total else 0.0}
+                    "top1_share_of_items_pct": _pct(top.iloc[0], items) if items else 0.0}
     return out
 
 
 def block_effect(matched: pd.DataFrame, facts: pd.DataFrame) -> list:
     """Median days from payable to cleared, items with vs without a removed
     payment block, per 3-way flow. Shows what a block costs in time."""
-    done = matched[matched["clear"].notna()].copy()
+    done = matched[matched["clear"].notna() & matched["gr"].notna()].copy()
+    # Per item: the log does not tie a block removal to a specific invoice.
     done["blocked"] = done["case_id"].map(facts["n_unblock"] > 0)
     rows = []
     for (flow, blocked), g in done.groupby(["flow", "blocked"]):

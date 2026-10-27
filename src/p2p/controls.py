@@ -83,14 +83,21 @@ SOD_PAIRS = {
 
 
 def sod_flags(roles: pd.DataFrame, index: pd.Index) -> Dict[str, pd.Series]:
-    """Segregation-of-duties conflicts: one human holds both roles on an item."""
+    """Segregation-of-duties conflicts: one human holds both roles on an item.
+
+    Applies only to items where a person performed each of the two steps;
+    elsewhere the flag is NaN (not applicable), never a pass.
+    """
     roles = roles.reindex(index)
     out = {}
     for key, (left, right, _) in SOD_PAIRS.items():
-        out[key] = pd.Series(
-            [isinstance(a, frozenset) and isinstance(b, frozenset) and bool(a & b)
-             for a, b in zip(roles[left], roles[right])],
-            index=index)
+        vals = []
+        for a, b in zip(roles[left], roles[right]):
+            if isinstance(a, frozenset) and isinstance(b, frozenset) and a and b:
+                vals.append(bool(a & b))
+            else:
+                vals.append(None)
+        out[key] = pd.Series(vals, index=index, dtype=object)
     return out
 
 

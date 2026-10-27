@@ -5,6 +5,8 @@
   const $ = (id) => document.getElementById(id);
   const CONTROL_FAMILIES = ["all", "conformance", "purchasing", "rework", "segregation of duties", "process"];
   const TRIP_LABEL = {};
+  const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const day = 864e5;
 
   function para(parent, html) {
     const p = document.createElement("p");
@@ -16,9 +18,15 @@
     $("heroItems").textContent = fmt(site.population.items);
     const ex = site.examples.find((e) => e.key === "recurring");
     window.FlowChart.render($("heroFlow"), ex);
+    const paid = ex.pairs.filter((p) => p.gr && p.clear);
+    const span = Math.round((Math.max(...paid.map((p) => Date.parse(p.clear))) -
+      Math.min(...paid.map((p) => Date.parse(p.gr)))) / day);
+    const waits = paid.map((p) => (Date.parse(p.clear) - Math.max(Date.parse(p.gr), Date.parse(p.ir))) / day)
+      .sort((a, b) => a - b);
+    const med = waits[Math.floor(waits.length / 2)];
     $("heroCaption").textContent = `Item ${ex.case_id}, ${ex.spend_area.toLowerCase()}: ` +
-      `${ex.pairs.length} receipts, each matched to its own invoice and payment. ` +
-      "Measured first receipt to last payment, this item looks months late; per invoice it was paid in days.";
+      `${paid.length} invoices, each matched to its own receipt and payment. ` +
+      `First receipt to last payment spans ${span} days; per invoice, the median wait to payment was ${Math.round(med)} days.`;
   }
 
   function renderExample(site, key) {
@@ -62,7 +70,7 @@
       const tr = document.createElement("tr");
       tr.dataset.control = c.control;
       const width = Math.min(100, (100 * c.rate_pct) / max);
-      tr.innerHTML = `<td>${c.title}<span class="family">${c.family}</span></td>` +
+      tr.innerHTML = `<td>${esc(c.title)}<span class="family">${esc(c.family)}</span></td>` +
         `<td class="num hide-sm">${fmt(c.applicable_items)}</td><td class="num">${fmt(c.exceptions)}</td>` +
         `<td><div class="rate${c.family === "process" ? " process" : ""}"><div class="track"><div class="fill" style="width:${width}%"></div></div>` +
         `<span>${c.exceptions ? c.rate_pct.toFixed(2) + "%" : "none"}</span></div></td>`;
@@ -87,17 +95,19 @@
     const cr = site.controls.find((c) => c.control === "sod_create_and_receive");
     const ic = sod.sod_invoice_and_clear;
     const n = $("sodNote");
-    para(n, `<strong>One account is a system, not a person.</strong> ${iface.join(", ")} creates purchase-order items in the same minute ` +
+    para(n, `<strong>One account is a system, not a person.</strong> ${esc(iface.join(", "))} creates purchase-order items in the same minute ` +
       `as the shopping-cart system in ${(100 * site.interface_users[iface[0]]).toFixed(1)}% of cases, so it is excluded from ` +
       `segregation-of-duties checks. Counting it would raise create-and-receive conflicts from ${fmt(cr.exceptions)} to ${fmt(raw.sod_create_and_receive)}.`);
-    para(n, `Invoice-and-clear conflicts come from ${ic.distinct_users} people; the busiest accounts for ${ic.top1_share_pct}% of them. ` +
-      `No one both created an item and recorded its invoice.`);
+    const ci = site.controls.find((c) => c.control === "sod_create_and_invoice");
+    para(n, `Invoice-and-clear conflicts come from ${ic.distinct_users} people; the busiest is involved in ${ic.top1_share_of_items_pct}% of them. ` +
+      (ci.exceptions === 0 ? "No one both created an item and recorded its invoice." :
+        `${fmt(ci.exceptions)} items had one person create the item and record its invoice.`));
   }
 
   function bar(parent, label, sub, days, maxDays, cls) {
     const row = document.createElement("div");
     row.className = "bar-row";
-    row.innerHTML = `<div class="label">${label}<small>${sub}</small></div>` +
+    row.innerHTML = `<div class="label">${esc(label)}<small>${esc(sub)}</small></div>` +
       `<div class="bar-track"><div class="bar-fill ${cls || ""}" style="width:${(100 * days) / maxDays}%">${days} d</div></div>`;
     parent.appendChild(row);
   }
@@ -108,17 +118,22 @@
     const max = Math.max(...rows.map((r) => r.ready_to_clear_median_days));
     const label = { "3way_after_gr": "3-way, invoice after GR", "3way_before_gr": "3-way, invoice before GR" };
     for (const r of rows) {
-      bar(box, label[r.flow], `${r.blocked ? "payment block removed" : "no block"}, ${fmt(r.cleared_invoices)} invoices`,
+      bar(box, label[r.flow], `${r.blocked ? "item had a payment block removed" : "no block on the item"}, ${fmt(r.cleared_invoices)} invoices`,
         r.ready_to_clear_median_days, max, r.blocked ? "blocked" : "");
     }
     const pr = site.payment_runs, nv = site.naive_vs_matched;
     const n = $("timeNotes");
     para(n, `<strong>Payment is a weekly run.</strong> ${pr.weekday_share_pct.Thursday}% of clearings happen on a Thursday, and one account ` +
       `performs ${pr.top_clearing_user_share_pct}% of all clearings, on just ${pr.top_clearing_user_distinct_days} days.`);
-    para(n, `<strong>Blocked invoices wait longer.</strong> Items where a payment block was removed clear about two weeks later at the median. ` +
+    const gap = (flow) => {
+      const b = rows.find((r) => r.flow === flow && r.blocked), u = rows.find((r) => r.flow === flow && !r.blocked);
+      return (b.ready_to_clear_median_days - u.ready_to_clear_median_days).toFixed(1);
+    };
+    para(n, `<strong>Invoices on blocked items wait longer.</strong> Where an item had a payment block removed, its invoices clear ` +
+      `${gap("3way_after_gr")} days later at the median on invoice-after-GR items and ${gap("3way_before_gr")} days later on invoice-before-GR items. ` +
       "The log does not say why a block was set, so this is an association, not a cause.");
     para(n, `<strong>Matching changes the answer.</strong> On ${fmt(nv.items_with_2plus_cleared_invoices)} items with several paid invoices, ` +
-      `first-receipt-to-last-payment gives a median of ${nv.naive_median_days} days; matched per invoice it is ${nv.matched_median_days} days.`);
+      `first-receipt-to-last-payment gives a median of ${nv.naive_median_days} days; across their ${fmt(nv.invoices_on_those_items)} matched invoices it is ${nv.matched_median_days} days.`);
   }
 
   function renderData(site) {

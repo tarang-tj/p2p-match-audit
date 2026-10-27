@@ -9,14 +9,16 @@ pairing uses order and time only:
 2. The k-th surviving invoice pairs with the k-th surviving goods receipt.
    For invoice-before-GR items the invoice may come first; the lag is then
    negative and means "invoice waited for goods".
-3. Each Clear Invoice pairs with the earliest surviving invoice recorded at
-   or before it that is not yet cleared. A clear with no open invoice is
-   unmatched (typically the clearing of a reversed invoice).
+3. Events are applied in time order. A Clear Invoice that follows a Cancel
+   Invoice Receipt, before any new invoice is recorded, clears the reversal
+   and stays unmatched. Any other clear pairs with the earliest invoice
+   still open at that moment. Record Subsequent Invoice is an invoice but
+   takes no goods-receipt slot.
 
 Throughput per matched invoice: GR->IR lag, IR->clear lag, and
 ready->clear where ready = max(GR, IR), the moment the item became payable.
 """
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import pandas as pd
 
@@ -27,10 +29,14 @@ _RELEVANT = {A.GOODS_RECEIPT, A.CANCEL_GR, A.INVOICE_RECEIPT,
 
 
 def match_case(events: List[tuple]) -> Dict[str, list]:
-    """Match one case. `events` = [(timestamp, activity)] in time order."""
+    """Match one case in a single pass. `events` = [(timestamp, activity)]
+    in time order. Cancellations and clearings are applied in the order they
+    happened, so a clearing can only see invoices still open at that moment.
+    """
     grs: List[pd.Timestamp] = []
-    irs: List[pd.Timestamp] = []
-    clears: List[pd.Timestamp] = []
+    irs: List[dict] = []  # {"ts", "clear", "subsequent"} for surviving invoices
+    unmatched_clears = 0
+    pending_reversals = 0  # Cancel IR seen, its reversal not yet cleared
     for ts, act in events:
         if act == A.GOODS_RECEIPT:
             grs.append(ts)
@@ -38,25 +44,34 @@ def match_case(events: List[tuple]) -> Dict[str, list]:
             if grs:
                 grs.pop()
         elif act in (A.INVOICE_RECEIPT, A.SUBSEQUENT_INVOICE):
-            irs.append(ts)
+            irs.append({"ts": ts, "clear": None, "subsequent": act == A.SUBSEQUENT_INVOICE})
+            pending_reversals = 0
         elif act == A.CANCEL_IR:
             if irs:
-                irs.pop()
+                reversed_ir = irs.pop()
+                if reversed_ir["clear"] is not None:
+                    unmatched_clears += 1  # it paid an invoice that no longer exists
+            pending_reversals += 1
         elif act == A.CLEAR_INVOICE:
-            clears.append(ts)
+            if pending_reversals:
+                pending_reversals -= 1
+                unmatched_clears += 1  # clearing of the reversal document
+                continue
+            # Single pass: every invoice in `irs` was recorded before this clear.
+            slot = next((i for i in irs if i["clear"] is None), None)
+            if slot is None:
+                unmatched_clears += 1
+            else:
+                slot["clear"] = ts
 
     pairs = []
-    cleared_by: List[Optional[pd.Timestamp]] = [None] * len(irs)
-    unmatched_clears = 0
-    for clr in clears:
-        slot = next((i for i, t in enumerate(irs) if cleared_by[i] is None and t <= clr), None)
-        if slot is None:
-            unmatched_clears += 1
-        else:
-            cleared_by[slot] = clr
-    for k, ir in enumerate(irs):
-        gr = grs[k] if k < len(grs) else None
-        pairs.append({"gr": gr, "ir": ir, "clear": cleared_by[k]})
+    regular = 0
+    for ir in irs:
+        gr = None
+        if not ir["subsequent"]:
+            gr = grs[regular] if regular < len(grs) else None
+            regular += 1
+        pairs.append({"gr": gr, "ir": ir["ts"], "clear": ir["clear"]})
     return {"pairs": pairs, "surviving_gr": len(grs), "surviving_ir": len(irs),
             "unmatched_clears": unmatched_clears}
 
@@ -66,8 +81,10 @@ def match_all(events: pd.DataFrame, facts: pd.DataFrame) -> pd.DataFrame:
     ev = events[events["activity"].isin(_RELEVANT)]
     ev = ev.sort_values(["case_id", "timestamp", "seq"], kind="mergesort")
     rows = []
+    unmatched = {}
     for case_id, grp in ev.groupby("case_id", sort=False):
         result = match_case(list(zip(grp["timestamp"], grp["activity"])))
+        unmatched[case_id] = result["unmatched_clears"]
         for k, p in enumerate(result["pairs"]):
             rows.append({"case_id": case_id, "k": k, **p,
                          "case_unmatched_clears": result["unmatched_clears"]})
@@ -81,6 +98,9 @@ def match_all(events: pd.DataFrame, facts: pd.DataFrame) -> pd.DataFrame:
     ready = out[["gr", "ir"]].max(axis=1)
     out["ready_to_clear_days"] = (out["clear"] - ready) / day
     out["flow"] = out["case_id"].map(facts["flow"])
+    # Per-item count, kept for every item, including items whose invoices
+    # were all reversed and so have no row above.
+    out.attrs["unmatched_clears"] = pd.Series(unmatched, dtype=int)
     return out
 
 

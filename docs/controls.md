@@ -8,8 +8,8 @@ Net goods receipts = Record Goods Receipt minus Cancel Goods Receipt. Net invoic
 
 | Key | Exception when | Applies to | Why it matters |
 |---|---|---|---|
-| ir_before_gr_gr_based | First invoice receipt is earlier than the first goods receipt, or there is no receipt | 3-way, invoice after GR | GR-based invoice verification should make this impossible; 0 confirms the system enforces it |
-| cleared_without_gr | Invoice cleared while net goods receipts are zero | Both 3-way flows | Payment for goods with no surviving proof of delivery |
+| ir_before_gr_gr_based | First invoice receipt is earlier than the first goods receipt, or there is no receipt | 3-way, invoice after GR | GR-based invoice verification should make this impossible; 0 is consistent with the system enforcing it |
+| cleared_without_gr | At the end of the log, at least one invoice was cleared and net goods receipts are zero | Both 3-way flows | Payment for goods with no surviving proof of delivery |
 | cleared_before_gr | First clearing is earlier than the first goods receipt | Both 3-way flows | The block that should hold an early invoice did not hold |
 | gr_on_2way | Any goods receipt | 2-way | Flow misclassified, or an unneeded step |
 | invoice_on_consignment | Any invoice receipt or clearing | Consignment | Consignment is settled outside the PO |
@@ -34,7 +34,7 @@ Vendor invoice events are all stamped 23:59 Amsterdam time (219,919 of 219,919),
 
 ## Segregation of duties
 
-A conflict needs one human user (named `user_NNN`) in both roles on the same item. Batch jobs, `NONE`, and interface accounts are excluded.
+A conflict needs one human user (named `user_NNN`) in both roles on the same item. Batch jobs, `NONE`, and interface accounts are excluded. The denominator is the items where a person performed both steps; elsewhere the control is not applicable.
 
 | Key | Roles |
 |---|---|

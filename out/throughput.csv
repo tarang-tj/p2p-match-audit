@@ -1,4 +1,4 @@
 flow,label,cleared_invoices,gr_to_ir_days_median,gr_to_ir_days_p90,ir_to_clear_days_median,ir_to_clear_days_p90,ready_to_clear_days_median,ready_to_clear_days_p90
 2way,2-way,297,,,5.2,21.9,5.2,21.9
-3way_after_gr,"3-way, invoice after GR",13110,20.0,69.2,28.0,80.0,28.0,80.0
-3way_before_gr,"3-way, invoice before GR",173833,8.8,45.2,42.2,97.7,42.1,97.2
+3way_after_gr,"3-way, invoice after GR",12889,20.0,69.2,28.0,80.0,28.0,80.0
+3way_before_gr,"3-way, invoice before GR",173259,8.8,45.1,42.3,97.7,42.2,97.2
