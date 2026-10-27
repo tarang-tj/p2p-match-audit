@@ -1,0 +1,1201 @@
+{
+  "block_effect": [
+    {
+      "blocked": false,
+      "cleared_invoices": 9776,
+      "flow": "3way_after_gr",
+      "ready_to_clear_median_days": 24.1
+    },
+    {
+      "blocked": true,
+      "cleared_invoices": 3334,
+      "flow": "3way_after_gr",
+      "ready_to_clear_median_days": 37.5
+    },
+    {
+      "blocked": false,
+      "cleared_invoices": 125283,
+      "flow": "3way_before_gr",
+      "ready_to_clear_median_days": 37.9
+    },
+    {
+      "blocked": true,
+      "cleared_invoices": 48550,
+      "flow": "3way_before_gr",
+      "ready_to_clear_median_days": 50.8
+    }
+  ],
+  "breakdowns": {
+    "after_the_fact_po.company": [
+      {
+        "company": "companyID_0000",
+        "exceptions": 3088,
+        "items": 250686,
+        "rate_pct": 1.23
+      },
+      {
+        "company": "companyID_0003",
+        "exceptions": 605,
+        "items": 1044,
+        "rate_pct": 57.95
+      }
+    ],
+    "after_the_fact_po.spend_area": [
+      {
+        "exceptions": 1472,
+        "items": 22292,
+        "rate_pct": 6.6,
+        "spend_area": "Trading & End Products"
+      },
+      {
+        "exceptions": 457,
+        "items": 65864,
+        "rate_pct": 0.69,
+        "spend_area": "Sales"
+      },
+      {
+        "exceptions": 385,
+        "items": 2635,
+        "rate_pct": 14.61,
+        "spend_area": "Others"
+      },
+      {
+        "exceptions": 353,
+        "items": 109199,
+        "rate_pct": 0.32,
+        "spend_area": "Packaging"
+      },
+      {
+        "exceptions": 305,
+        "items": 584,
+        "rate_pct": 52.23,
+        "spend_area": "Real Estate"
+      },
+      {
+        "exceptions": 248,
+        "items": 5242,
+        "rate_pct": 4.73,
+        "spend_area": "Logistics"
+      },
+      {
+        "exceptions": 190,
+        "items": 6769,
+        "rate_pct": 2.81,
+        "spend_area": "CAPEX & SOCS"
+      },
+      {
+        "exceptions": 75,
+        "items": 18318,
+        "rate_pct": 0.41,
+        "spend_area": "Additives"
+      },
+      {
+        "exceptions": 60,
+        "items": 664,
+        "rate_pct": 9.04,
+        "spend_area": "Enterprise Services"
+      },
+      {
+        "exceptions": 54,
+        "items": 3289,
+        "rate_pct": 1.64,
+        "spend_area": ""
+      }
+    ],
+    "after_the_fact_po.vendor": [
+      {
+        "exceptions": 1215,
+        "items": 1263,
+        "rate_pct": 96.2,
+        "vendor": "vendorID_0550"
+      },
+      {
+        "exceptions": 217,
+        "items": 3902,
+        "rate_pct": 5.56,
+        "vendor": "vendorID_0108"
+      },
+      {
+        "exceptions": 179,
+        "items": 3182,
+        "rate_pct": 5.63,
+        "vendor": "vendorID_0246"
+      },
+      {
+        "exceptions": 110,
+        "items": 157,
+        "rate_pct": 70.06,
+        "vendor": "vendorID_0660"
+      },
+      {
+        "exceptions": 81,
+        "items": 1910,
+        "rate_pct": 4.24,
+        "vendor": "vendorID_0524"
+      },
+      {
+        "exceptions": 63,
+        "items": 1630,
+        "rate_pct": 3.87,
+        "vendor": "vendorID_0167"
+      },
+      {
+        "exceptions": 54,
+        "items": 208,
+        "rate_pct": 25.96,
+        "vendor": "vendorID_0411"
+      },
+      {
+        "exceptions": 54,
+        "items": 3419,
+        "rate_pct": 1.58,
+        "vendor": "vendorID_0236"
+      },
+      {
+        "exceptions": 51,
+        "items": 57,
+        "rate_pct": 89.47,
+        "vendor": "vendorID_1690"
+      },
+      {
+        "exceptions": 46,
+        "items": 71,
+        "rate_pct": 64.79,
+        "vendor": "vendorID_0539"
+      }
+    ],
+    "cleared_without_gr.company": [
+      {
+        "company": "companyID_0000",
+        "exceptions": 674,
+        "items": 236188,
+        "rate_pct": 0.29
+      }
+    ],
+    "cleared_without_gr.spend_area": [
+      {
+        "exceptions": 266,
+        "items": 22288,
+        "rate_pct": 1.19,
+        "spend_area": "Trading & End Products"
+      },
+      {
+        "exceptions": 167,
+        "items": 100635,
+        "rate_pct": 0.17,
+        "spend_area": "Packaging"
+      },
+      {
+        "exceptions": 131,
+        "items": 65658,
+        "rate_pct": 0.2,
+        "spend_area": "Sales"
+      },
+      {
+        "exceptions": 63,
+        "items": 6725,
+        "rate_pct": 0.94,
+        "spend_area": "CAPEX & SOCS"
+      },
+      {
+        "exceptions": 16,
+        "items": 15852,
+        "rate_pct": 0.1,
+        "spend_area": "Additives"
+      },
+      {
+        "exceptions": 6,
+        "items": 1791,
+        "rate_pct": 0.34,
+        "spend_area": "Marketing"
+      },
+      {
+        "exceptions": 5,
+        "items": 927,
+        "rate_pct": 0.54,
+        "spend_area": "Titanium Dioxides"
+      },
+      {
+        "exceptions": 5,
+        "items": 2364,
+        "rate_pct": 0.21,
+        "spend_area": "Others"
+      },
+      {
+        "exceptions": 5,
+        "items": 3823,
+        "rate_pct": 0.13,
+        "spend_area": "Latex & Monomers"
+      },
+      {
+        "exceptions": 3,
+        "items": 542,
+        "rate_pct": 0.55,
+        "spend_area": "Enterprise Services"
+      }
+    ],
+    "cleared_without_gr.vendor": [
+      {
+        "exceptions": 232,
+        "items": 3182,
+        "rate_pct": 7.29,
+        "vendor": "vendorID_0246"
+      },
+      {
+        "exceptions": 44,
+        "items": 14471,
+        "rate_pct": 0.3,
+        "vendor": "vendorID_0136"
+      },
+      {
+        "exceptions": 37,
+        "items": 157,
+        "rate_pct": 23.57,
+        "vendor": "vendorID_0660"
+      },
+      {
+        "exceptions": 25,
+        "items": 2989,
+        "rate_pct": 0.84,
+        "vendor": "vendorID_0125"
+      },
+      {
+        "exceptions": 24,
+        "items": 887,
+        "rate_pct": 2.71,
+        "vendor": "vendorID_0145"
+      },
+      {
+        "exceptions": 22,
+        "items": 3911,
+        "rate_pct": 0.56,
+        "vendor": "vendorID_0118"
+      },
+      {
+        "exceptions": 21,
+        "items": 13564,
+        "rate_pct": 0.15,
+        "vendor": "vendorID_0120"
+      },
+      {
+        "exceptions": 19,
+        "items": 1842,
+        "rate_pct": 1.03,
+        "vendor": "vendorID_0122"
+      },
+      {
+        "exceptions": 16,
+        "items": 7249,
+        "rate_pct": 0.22,
+        "vendor": "vendorID_0182"
+      },
+      {
+        "exceptions": 15,
+        "items": 1054,
+        "rate_pct": 1.42,
+        "vendor": "vendorID_0115"
+      }
+    ],
+    "invoice_cancelled.company": [
+      {
+        "company": "companyID_0000",
+        "exceptions": 6461,
+        "items": 250686,
+        "rate_pct": 2.58
+      },
+      {
+        "company": "companyID_0003",
+        "exceptions": 10,
+        "items": 1044,
+        "rate_pct": 0.96
+      }
+    ],
+    "invoice_cancelled.spend_area": [
+      {
+        "exceptions": 2006,
+        "items": 65864,
+        "rate_pct": 3.05,
+        "spend_area": "Sales"
+      },
+      {
+        "exceptions": 1520,
+        "items": 109199,
+        "rate_pct": 1.39,
+        "spend_area": "Packaging"
+      },
+      {
+        "exceptions": 1157,
+        "items": 22292,
+        "rate_pct": 5.19,
+        "spend_area": "Trading & End Products"
+      },
+      {
+        "exceptions": 439,
+        "items": 18318,
+        "rate_pct": 2.4,
+        "spend_area": "Additives"
+      },
+      {
+        "exceptions": 331,
+        "items": 6769,
+        "rate_pct": 4.89,
+        "spend_area": "CAPEX & SOCS"
+      },
+      {
+        "exceptions": 243,
+        "items": 5007,
+        "rate_pct": 4.85,
+        "spend_area": "Latex & Monomers"
+      },
+      {
+        "exceptions": 151,
+        "items": 5242,
+        "rate_pct": 2.88,
+        "spend_area": "Logistics"
+      },
+      {
+        "exceptions": 122,
+        "items": 2629,
+        "rate_pct": 4.64,
+        "spend_area": "Solvents"
+      },
+      {
+        "exceptions": 119,
+        "items": 2406,
+        "rate_pct": 4.95,
+        "spend_area": "Specialty Resins"
+      },
+      {
+        "exceptions": 115,
+        "items": 2635,
+        "rate_pct": 4.36,
+        "spend_area": "Others"
+      }
+    ],
+    "invoice_cancelled.vendor": [
+      {
+        "exceptions": 389,
+        "items": 3911,
+        "rate_pct": 9.95,
+        "vendor": "vendorID_0118"
+      },
+      {
+        "exceptions": 266,
+        "items": 3182,
+        "rate_pct": 8.36,
+        "vendor": "vendorID_0246"
+      },
+      {
+        "exceptions": 253,
+        "items": 14471,
+        "rate_pct": 1.75,
+        "vendor": "vendorID_0136"
+      },
+      {
+        "exceptions": 237,
+        "items": 3419,
+        "rate_pct": 6.93,
+        "vendor": "vendorID_0236"
+      },
+      {
+        "exceptions": 185,
+        "items": 880,
+        "rate_pct": 21.02,
+        "vendor": "vendorID_0119"
+      },
+      {
+        "exceptions": 159,
+        "items": 3902,
+        "rate_pct": 4.07,
+        "vendor": "vendorID_0108"
+      },
+      {
+        "exceptions": 133,
+        "items": 2550,
+        "rate_pct": 5.22,
+        "vendor": "vendorID_0404"
+      },
+      {
+        "exceptions": 124,
+        "items": 3272,
+        "rate_pct": 3.79,
+        "vendor": "vendorID_0110"
+      },
+      {
+        "exceptions": 123,
+        "items": 7250,
+        "rate_pct": 1.7,
+        "vendor": "vendorID_0182"
+      },
+      {
+        "exceptions": 112,
+        "items": 905,
+        "rate_pct": 12.38,
+        "vendor": "vendorID_0268"
+      }
+    ],
+    "invoices_exceed_receipts.company": [
+      {
+        "company": "companyID_0000",
+        "exceptions": 1644,
+        "items": 236188,
+        "rate_pct": 0.7
+      }
+    ],
+    "invoices_exceed_receipts.spend_area": [
+      {
+        "exceptions": 690,
+        "items": 100635,
+        "rate_pct": 0.69,
+        "spend_area": "Packaging"
+      },
+      {
+        "exceptions": 376,
+        "items": 65658,
+        "rate_pct": 0.57,
+        "spend_area": "Sales"
+      },
+      {
+        "exceptions": 167,
+        "items": 22288,
+        "rate_pct": 0.75,
+        "spend_area": "Trading & End Products"
+      },
+      {
+        "exceptions": 139,
+        "items": 15852,
+        "rate_pct": 0.88,
+        "spend_area": "Additives"
+      },
+      {
+        "exceptions": 58,
+        "items": 2364,
+        "rate_pct": 2.45,
+        "spend_area": "Others"
+      },
+      {
+        "exceptions": 48,
+        "items": 3823,
+        "rate_pct": 1.26,
+        "spend_area": "Latex & Monomers"
+      },
+      {
+        "exceptions": 33,
+        "items": 2426,
+        "rate_pct": 1.36,
+        "spend_area": "Pigments & Colorants"
+      },
+      {
+        "exceptions": 27,
+        "items": 6725,
+        "rate_pct": 0.4,
+        "spend_area": "CAPEX & SOCS"
+      },
+      {
+        "exceptions": 23,
+        "items": 2163,
+        "rate_pct": 1.06,
+        "spend_area": "Solvents"
+      },
+      {
+        "exceptions": 21,
+        "items": 3233,
+        "rate_pct": 0.65,
+        "spend_area": ""
+      }
+    ],
+    "invoices_exceed_receipts.vendor": [
+      {
+        "exceptions": 171,
+        "items": 2550,
+        "rate_pct": 6.71,
+        "vendor": "vendorID_0404"
+      },
+      {
+        "exceptions": 164,
+        "items": 6014,
+        "rate_pct": 2.73,
+        "vendor": "vendorID_0103"
+      },
+      {
+        "exceptions": 65,
+        "items": 9817,
+        "rate_pct": 0.66,
+        "vendor": "vendorID_0104"
+      },
+      {
+        "exceptions": 49,
+        "items": 3008,
+        "rate_pct": 1.63,
+        "vendor": "vendorID_0150"
+      },
+      {
+        "exceptions": 46,
+        "items": 14471,
+        "rate_pct": 0.32,
+        "vendor": "vendorID_0136"
+      },
+      {
+        "exceptions": 34,
+        "items": 1321,
+        "rate_pct": 2.57,
+        "vendor": "vendorID_0278"
+      },
+      {
+        "exceptions": 33,
+        "items": 1036,
+        "rate_pct": 3.19,
+        "vendor": "vendorID_0277"
+      },
+      {
+        "exceptions": 33,
+        "items": 3264,
+        "rate_pct": 1.01,
+        "vendor": "vendorID_0264"
+      },
+      {
+        "exceptions": 27,
+        "items": 7231,
+        "rate_pct": 0.37,
+        "vendor": "vendorID_0106"
+      },
+      {
+        "exceptions": 24,
+        "items": 1846,
+        "rate_pct": 1.3,
+        "vendor": "vendorID_0105"
+      }
+    ],
+    "price_change_after_invoice.company": [
+      {
+        "company": "companyID_0000",
+        "exceptions": 2373,
+        "items": 250686,
+        "rate_pct": 0.95
+      },
+      {
+        "company": "companyID_0003",
+        "exceptions": 1,
+        "items": 1044,
+        "rate_pct": 0.1
+      }
+    ],
+    "price_change_after_invoice.spend_area": [
+      {
+        "exceptions": 757,
+        "items": 109199,
+        "rate_pct": 0.69,
+        "spend_area": "Packaging"
+      },
+      {
+        "exceptions": 382,
+        "items": 65864,
+        "rate_pct": 0.58,
+        "spend_area": "Sales"
+      },
+      {
+        "exceptions": 300,
+        "items": 18318,
+        "rate_pct": 1.64,
+        "spend_area": "Additives"
+      },
+      {
+        "exceptions": 221,
+        "items": 22292,
+        "rate_pct": 0.99,
+        "spend_area": "Trading & End Products"
+      },
+      {
+        "exceptions": 168,
+        "items": 5007,
+        "rate_pct": 3.36,
+        "spend_area": "Latex & Monomers"
+      },
+      {
+        "exceptions": 141,
+        "items": 5242,
+        "rate_pct": 2.69,
+        "spend_area": "Logistics"
+      },
+      {
+        "exceptions": 99,
+        "items": 2629,
+        "rate_pct": 3.77,
+        "spend_area": "Solvents"
+      },
+      {
+        "exceptions": 73,
+        "items": 2406,
+        "rate_pct": 3.03,
+        "spend_area": "Specialty Resins"
+      },
+      {
+        "exceptions": 64,
+        "items": 2593,
+        "rate_pct": 2.47,
+        "spend_area": "Pigments & Colorants"
+      },
+      {
+        "exceptions": 40,
+        "items": 6769,
+        "rate_pct": 0.59,
+        "spend_area": "CAPEX & SOCS"
+      }
+    ],
+    "price_change_after_invoice.vendor": [
+      {
+        "exceptions": 165,
+        "items": 14471,
+        "rate_pct": 1.14,
+        "vendor": "vendorID_0136"
+      },
+      {
+        "exceptions": 72,
+        "items": 3055,
+        "rate_pct": 2.36,
+        "vendor": "vendorID_0197"
+      },
+      {
+        "exceptions": 62,
+        "items": 13564,
+        "rate_pct": 0.46,
+        "vendor": "vendorID_0120"
+      },
+      {
+        "exceptions": 56,
+        "items": 2989,
+        "rate_pct": 1.87,
+        "vendor": "vendorID_0125"
+      },
+      {
+        "exceptions": 47,
+        "items": 7231,
+        "rate_pct": 0.65,
+        "vendor": "vendorID_0106"
+      },
+      {
+        "exceptions": 42,
+        "items": 1105,
+        "rate_pct": 3.8,
+        "vendor": "vendorID_0166"
+      },
+      {
+        "exceptions": 40,
+        "items": 674,
+        "rate_pct": 5.93,
+        "vendor": "vendorID_0183"
+      },
+      {
+        "exceptions": 40,
+        "items": 1391,
+        "rate_pct": 2.88,
+        "vendor": "vendorID_0172"
+      },
+      {
+        "exceptions": 34,
+        "items": 449,
+        "rate_pct": 7.57,
+        "vendor": "vendorID_0389"
+      },
+      {
+        "exceptions": 33,
+        "items": 693,
+        "rate_pct": 4.76,
+        "vendor": "vendorID_0176"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "applicable_items": 15182,
+      "control": "ir_before_gr_gr_based",
+      "exceptions": 0,
+      "family": "conformance",
+      "po_value_eur": 0.0,
+      "rate_pct": 0.0,
+      "title": "Invoice recorded before any goods receipt on a GR-based item",
+      "value_share_pct": 0.0
+    },
+    {
+      "applicable_items": 236192,
+      "control": "cleared_without_gr",
+      "exceptions": 674,
+      "family": "conformance",
+      "po_value_eur": 1189747.0,
+      "rate_pct": 0.29,
+      "title": "Invoice cleared with no net goods receipt on a 3-way item",
+      "value_share_pct": 0.12
+    },
+    {
+      "applicable_items": 236192,
+      "control": "cleared_before_gr",
+      "exceptions": 89,
+      "family": "conformance",
+      "po_value_eur": 1128598.0,
+      "rate_pct": 0.04,
+      "title": "First invoice cleared before the first goods receipt on a 3-way item",
+      "value_share_pct": 0.11
+    },
+    {
+      "applicable_items": 1044,
+      "control": "gr_on_2way",
+      "exceptions": 0,
+      "family": "conformance",
+      "po_value_eur": 0.0,
+      "rate_pct": 0.0,
+      "title": "Goods receipt recorded on a 2-way item",
+      "value_share_pct": 0.0
+    },
+    {
+      "applicable_items": 14498,
+      "control": "invoice_on_consignment",
+      "exceptions": 0,
+      "family": "conformance",
+      "po_value_eur": 0.0,
+      "rate_pct": 0.0,
+      "title": "Invoice recorded or cleared on a consignment item",
+      "value_share_pct": 0.0
+    },
+    {
+      "applicable_items": 236192,
+      "control": "invoices_exceed_receipts",
+      "exceptions": 1644,
+      "family": "conformance",
+      "po_value_eur": 17104341.0,
+      "rate_pct": 0.7,
+      "title": "More net invoices than net goods receipts at the end of the log (3-way)",
+      "value_share_pct": 1.72
+    },
+    {
+      "applicable_items": 251734,
+      "control": "after_the_fact_po",
+      "exceptions": 3693,
+      "family": "purchasing",
+      "po_value_eur": 49659054.0,
+      "rate_pct": 1.47,
+      "title": "Vendor invoice dated before the PO item was created (local calendar date)",
+      "value_share_pct": 4.98
+    },
+    {
+      "applicable_items": 251734,
+      "control": "price_change_after_invoice",
+      "exceptions": 2374,
+      "family": "purchasing",
+      "po_value_eur": 87780826.0,
+      "rate_pct": 0.94,
+      "title": "Price changed after an invoice was recorded",
+      "value_share_pct": 8.81
+    },
+    {
+      "applicable_items": 251734,
+      "control": "invoice_cancelled",
+      "exceptions": 6471,
+      "family": "rework",
+      "po_value_eur": 113793628.0,
+      "rate_pct": 2.57,
+      "title": "At least one invoice receipt cancelled",
+      "value_share_pct": 11.42
+    },
+    {
+      "applicable_items": 251734,
+      "control": "gr_cancelled",
+      "exceptions": 2470,
+      "family": "rework",
+      "po_value_eur": 67839986.0,
+      "rate_pct": 0.98,
+      "title": "At least one goods receipt cancelled",
+      "value_share_pct": 6.81
+    },
+    {
+      "applicable_items": 251734,
+      "control": "payment_block_removed",
+      "exceptions": 55839,
+      "family": "process",
+      "po_value_eur": 281470191.0,
+      "rate_pct": 22.18,
+      "title": "Payment block removed manually or by batch",
+      "value_share_pct": 28.24
+    },
+    {
+      "applicable_items": 251734,
+      "control": "sod_create_and_receive",
+      "exceptions": 3825,
+      "family": "segregation of duties",
+      "po_value_eur": 40423066.0,
+      "rate_pct": 1.52,
+      "title": "Same person created the PO item and recorded its goods receipt",
+      "value_share_pct": 4.06
+    },
+    {
+      "applicable_items": 251734,
+      "control": "sod_create_and_invoice",
+      "exceptions": 0,
+      "family": "segregation of duties",
+      "po_value_eur": 0.0,
+      "rate_pct": 0.0,
+      "title": "Same person created the PO item and recorded its invoice",
+      "value_share_pct": 0.0
+    },
+    {
+      "applicable_items": 251734,
+      "control": "sod_invoice_and_clear",
+      "exceptions": 2526,
+      "family": "segregation of duties",
+      "po_value_eur": 61485108.0,
+      "rate_pct": 1.0,
+      "title": "Same person recorded the invoice and cleared it for payment",
+      "value_share_pct": 6.17
+    }
+  ],
+  "data_quality": {
+    "time_window": {
+      "events_after_2019_01_31": 9,
+      "events_before_2018": 318,
+      "first_event": "1948-01-26 22:59:00+00:00",
+      "last_event": "2020-04-09 21:59:00+00:00",
+      "po_items_created_outside_2018": 382
+    },
+    "users": {
+      "batch_users": 20,
+      "events_without_user_pct": 25.01,
+      "human_users": 607,
+      "no_user_by_activity_pct": {
+        "Clear Invoice": 2.0,
+        "Record Service Entry Sheet": 41.3,
+        "Vendor creates invoice": 55.1
+      }
+    },
+    "value_semantics": {
+      "invoice_events_equal_item_value_pct": 99.15,
+      "items": 251734,
+      "items_value_constant": 247102,
+      "items_value_constant_pct": 98.16,
+      "items_with_2plus_invoices": 9644,
+      "of_which_invoices_sum_to_item_value": 6,
+      "zero_value_items": 16385
+    }
+  },
+  "interface_users": {
+    "user_000": 0.9931
+  },
+  "matching": {
+    "invoices_cleared": 187240,
+    "invoices_surviving": 222698,
+    "invoices_with_gr": 219770,
+    "items_with_unmatched_clears": 4524
+  },
+  "naive_vs_matched": {
+    "items_with_2plus_cleared_invoices": 1915,
+    "matched_median_days": 32.1,
+    "naive_median_days": 94.0
+  },
+  "payment_block_by_flow": [
+    {
+      "exceptions": 53608,
+      "flow": "3way_before_gr",
+      "items": 221010,
+      "rate_pct": 24.26
+    },
+    {
+      "exceptions": 2230,
+      "flow": "3way_after_gr",
+      "items": 15182,
+      "rate_pct": 14.69
+    },
+    {
+      "exceptions": 1,
+      "flow": "2way",
+      "items": 1044,
+      "rate_pct": 0.1
+    },
+    {
+      "exceptions": 0,
+      "flow": "consignment",
+      "items": 14498,
+      "rate_pct": 0.0
+    }
+  ],
+  "payment_runs": {
+    "clears": 194393,
+    "top_clearing_user": "user_002",
+    "top_clearing_user_distinct_days": 94,
+    "top_clearing_user_share_pct": 85.58,
+    "weekday_share_pct": {
+      "Friday": 19.08,
+      "Monday": 0.62,
+      "Saturday": 0.06,
+      "Sunday": 0.1,
+      "Thursday": 75.06,
+      "Tuesday": 1.41,
+      "Wednesday": 3.67
+    }
+  },
+  "population": {
+    "activities": 42,
+    "events": 1595923,
+    "flow_mix": {
+      "2-way": 1044,
+      "3-way, invoice after GR": 15182,
+      "3-way, invoice before GR": 221010,
+      "Consignment": 14498
+    },
+    "items": 251734,
+    "purchase_documents": 76349
+  },
+  "sod_concentration": {
+    "sod_create_and_invoice": {
+      "conflicting_user_items": 0,
+      "distinct_users": 0,
+      "top1_share_pct": 0.0,
+      "top_users": []
+    },
+    "sod_create_and_receive": {
+      "conflicting_user_items": 3825,
+      "distinct_users": 46,
+      "top1_share_pct": 26.17,
+      "top_users": [
+        [
+          "user_138",
+          1001
+        ],
+        [
+          "user_136",
+          691
+        ],
+        [
+          "user_200",
+          536
+        ],
+        [
+          "user_164",
+          237
+        ],
+        [
+          "user_172",
+          226
+        ]
+      ]
+    },
+    "sod_invoice_and_clear": {
+      "conflicting_user_items": 2628,
+      "distinct_users": 15,
+      "top1_share_pct": 29.91,
+      "top_users": [
+        [
+          "user_015",
+          786
+        ],
+        [
+          "user_013",
+          368
+        ],
+        [
+          "user_006",
+          356
+        ],
+        [
+          "user_012",
+          315
+        ],
+        [
+          "user_004",
+          279
+        ]
+      ]
+    }
+  },
+  "sod_including_interface_accounts": {
+    "sod_create_and_invoice": 0,
+    "sod_create_and_receive": 5149,
+    "sod_invoice_and_clear": 2526
+  },
+  "throughput": [
+    {
+      "cleared_invoices": 297,
+      "flow": "2way",
+      "gr_to_ir_days_median": null,
+      "gr_to_ir_days_p90": null,
+      "ir_to_clear_days_median": 5.2,
+      "ir_to_clear_days_p90": 21.9,
+      "label": "2-way",
+      "ready_to_clear_days_median": 5.2,
+      "ready_to_clear_days_p90": 21.9
+    },
+    {
+      "cleared_invoices": 13110,
+      "flow": "3way_after_gr",
+      "gr_to_ir_days_median": 20.0,
+      "gr_to_ir_days_p90": 69.2,
+      "ir_to_clear_days_median": 28.0,
+      "ir_to_clear_days_p90": 80.0,
+      "label": "3-way, invoice after GR",
+      "ready_to_clear_days_median": 28.0,
+      "ready_to_clear_days_p90": 80.0
+    },
+    {
+      "cleared_invoices": 173833,
+      "flow": "3way_before_gr",
+      "gr_to_ir_days_median": 8.8,
+      "gr_to_ir_days_p90": 45.2,
+      "ir_to_clear_days_median": 42.2,
+      "ir_to_clear_days_p90": 97.7,
+      "label": "3-way, invoice before GR",
+      "ready_to_clear_days_median": 42.1,
+      "ready_to_clear_days_p90": 97.2
+    }
+  ],
+  "value_units": {
+    "note": "anonymized by a linear scaling; report shares, not euros",
+    "total_item_value": 996818747.0
+  },
+  "variants": {
+    "2way": {
+      "distinct_variants": 15,
+      "items": 1044,
+      "top": [
+        {
+          "cumulative_pct": 34.2,
+          "items": 357,
+          "share_pct": 34.2,
+          "variant": "PO"
+        },
+        {
+          "cumulative_pct": 67.15,
+          "items": 344,
+          "share_pct": 32.95,
+          "variant": "VINV>PO>IR"
+        },
+        {
+          "cumulative_pct": 91.28,
+          "items": 252,
+          "share_pct": 24.14,
+          "variant": "VINV>PO>IR>CLR"
+        },
+        {
+          "cumulative_pct": 94.35,
+          "items": 32,
+          "share_pct": 3.07,
+          "variant": "PO>VINV>IR>CLR"
+        },
+        {
+          "cumulative_pct": 96.36,
+          "items": 21,
+          "share_pct": 2.01,
+          "variant": "PO>VINV>IR"
+        }
+      ],
+      "variants_for_80pct": 3
+    },
+    "3way_after_gr": {
+      "distinct_variants": 748,
+      "items": 15182,
+      "top": [
+        {
+          "cumulative_pct": 23.12,
+          "items": 3510,
+          "share_pct": 23.12,
+          "variant": "PO>VINV>GR>IR>CLR"
+        },
+        {
+          "cumulative_pct": 44.3,
+          "items": 3215,
+          "share_pct": 21.18,
+          "variant": "PO>GR"
+        },
+        {
+          "cumulative_pct": 64.78,
+          "items": 3110,
+          "share_pct": 20.48,
+          "variant": "PO>GR>VINV>IR>CLR"
+        },
+        {
+          "cumulative_pct": 70.24,
+          "items": 829,
+          "share_pct": 5.46,
+          "variant": "PO>VINV>GR>IR>UNBLOCK>CLR"
+        },
+        {
+          "cumulative_pct": 74.65,
+          "items": 670,
+          "share_pct": 4.41,
+          "variant": "PO>GR>VINV>IR>UNBLOCK>CLR"
+        }
+      ],
+      "variants_for_80pct": 7
+    },
+    "3way_before_gr": {
+      "distinct_variants": 1688,
+      "items": 221010,
+      "top": [
+        {
+          "cumulative_pct": 31.74,
+          "items": 70155,
+          "share_pct": 31.74,
+          "variant": "PO>VINV>GR>IR>CLR"
+        },
+        {
+          "cumulative_pct": 53.48,
+          "items": 48050,
+          "share_pct": 21.74,
+          "variant": "PO>GR>VINV>IR>CLR"
+        },
+        {
+          "cumulative_pct": 61.07,
+          "items": 16771,
+          "share_pct": 7.59,
+          "variant": "PO>VINV>GR>IR>UNBLOCK>CLR"
+        },
+        {
+          "cumulative_pct": 67.05,
+          "items": 13207,
+          "share_pct": 5.98,
+          "variant": "PO"
+        },
+        {
+          "cumulative_pct": 72.75,
+          "items": 12592,
+          "share_pct": 5.7,
+          "variant": "PO>GR>VINV>IR>UNBLOCK>CLR"
+        }
+      ],
+      "variants_for_80pct": 7
+    },
+    "consignment": {
+      "distinct_variants": 6,
+      "items": 14498,
+      "top": [
+        {
+          "cumulative_pct": 91.46,
+          "items": 13260,
+          "share_pct": 91.46,
+          "variant": "PO>GR"
+        },
+        {
+          "cumulative_pct": 98.58,
+          "items": 1032,
+          "share_pct": 7.12,
+          "variant": "PO"
+        },
+        {
+          "cumulative_pct": 99.34,
+          "items": 110,
+          "share_pct": 0.76,
+          "variant": "PO>GR>xGR>GR"
+        },
+        {
+          "cumulative_pct": 99.95,
+          "items": 89,
+          "share_pct": 0.61,
+          "variant": "PO>GR>xGR"
+        },
+        {
+          "cumulative_pct": 99.98,
+          "items": 4,
+          "share_pct": 0.03,
+          "variant": "PO>GR>xGR>GR>xGR>GR"
+        }
+      ],
+      "variants_for_80pct": 1
+    }
+  }
+}

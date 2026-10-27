@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three-Way Match Audit</title>
+<meta name="description" content="Procurement controls audit of a real ERP purchase-to-pay log: 251,734 purchase-order items, 1.6M events.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <header class="hero">
+    <h1>Before a supplier gets paid, three documents have to agree.</h1>
+    <p class="lede">A purchase order says what was bought. A goods receipt says it arrived. An invoice says what is owed.
+      This is an audit of how often that rule held across <strong id="heroItems">…</strong> real purchase-order items
+      from a multinational coatings company's ERP, 2018.</p>
+    <figure class="flow-figure" id="heroFlow" aria-describedby="heroCaption"></figure>
+    <p class="caption" id="heroCaption"></p>
+    <ul class="legend" aria-label="Document types">
+      <li><span class="sw po"></span>Purchase order</li>
+      <li><span class="sw gr"></span>Goods receipt</li>
+      <li><span class="sw ir"></span>Invoice</li>
+      <li><span class="sw clr"></span>Cleared for payment</li>
+      <li><span class="sw vinv"></span>Vendor's invoice date</li>
+    </ul>
+  </header>
+
+  <section aria-labelledby="h-explore">
+    <h2 id="h-explore">Walk one item through the controls</h2>
+    <p>Each tab is a real item from the log. Lines connect the receipt, invoice and clearing that the matching rule paired.</p>
+    <div class="tabs" role="tablist" id="exampleTabs"></div>
+    <div class="example" id="examplePanel" role="tabpanel" aria-live="polite">
+      <h3 id="exampleTitle"></h3>
+      <p id="exampleBlurb"></p>
+      <figure class="flow-figure" id="exampleFlow"></figure>
+      <dl class="facts" id="exampleFacts"></dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-controls">
+    <h2 id="h-controls">What the controls found</h2>
+    <p>Rates use only the items a control applies to. A 2-way item cannot fail a goods-receipt check, so it is not in that denominator.</p>
+    <div class="filters" role="group" aria-label="Filter by control family" id="familyFilter"></div>
+    <table class="controls" id="controlsTable">
+      <thead><tr><th scope="col">Control</th><th scope="col" class="num hide-sm">Items checked</th>
+        <th scope="col" class="num">Exceptions</th><th scope="col" class="bar-col">Rate</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="notes" id="sodNote"></div>
+  </section>
+
+  <section aria-labelledby="h-time">
+    <h2 id="h-time">How long payment takes, once an item is payable</h2>
+    <p>Payable means the later of receipt and invoice. Median days to clearing, per matched invoice.</p>
+    <div id="throughputBars" class="bars"></div>
+    <div class="notes" id="timeNotes"></div>
+  </section>
+
+  <section aria-labelledby="h-data">
+    <h2 id="h-data">What this log can and cannot prove</h2>
+    <div id="dataNotes" class="notes"></div>
+  </section>
+
+  <footer>
+    <p id="sourceLine">Data: van Dongen, B.F., Dataset BPI Challenge 2019, 4TU.Centre for Research Data,
+      <a href="https://doi.org/10.4121/uuid:d06aff4b-79f0-45e6-8ec8-e19730c248f1">doi:10.4121/uuid:d06aff4b-79f0-45e6-8ec8-e19730c248f1</a>.
+      Company, vendor and user names are anonymized by the publisher. The source does not name the ERP product.
+      Values are anonymized by linear scaling, so this page reports counts and shares, not euros.</p>
+    <p>Analysis and code: Tarang Jammalamadaka.</p>
+  </footer>
+</main>
+<script src="flow-chart.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,960 @@
+{
+ "block_effect": [
+  {
+   "blocked": false,
+   "cleared_invoices": 9776,
+   "flow": "3way_after_gr",
+   "ready_to_clear_median_days": 24.1
+  },
+  {
+   "blocked": true,
+   "cleared_invoices": 3334,
+   "flow": "3way_after_gr",
+   "ready_to_clear_median_days": 37.5
+  },
+  {
+   "blocked": false,
+   "cleared_invoices": 125283,
+   "flow": "3way_before_gr",
+   "ready_to_clear_median_days": 37.9
+  },
+  {
+   "blocked": true,
+   "cleared_invoices": 48550,
+   "flow": "3way_before_gr",
+   "ready_to_clear_median_days": 50.8
+  }
+ ],
+ "controls": [
+  {
+   "applicable_items": 15182,
+   "control": "ir_before_gr_gr_based",
+   "exceptions": 0,
+   "family": "conformance",
+   "po_value_eur": 0.0,
+   "rate_pct": 0.0,
+   "title": "Invoice recorded before any goods receipt on a GR-based item",
+   "value_share_pct": 0.0
+  },
+  {
+   "applicable_items": 236192,
+   "control": "cleared_without_gr",
+   "exceptions": 674,
+   "family": "conformance",
+   "po_value_eur": 1189747.0,
+   "rate_pct": 0.29,
+   "title": "Invoice cleared with no net goods receipt on a 3-way item",
+   "value_share_pct": 0.12
+  },
+  {
+   "applicable_items": 236192,
+   "control": "cleared_before_gr",
+   "exceptions": 89,
+   "family": "conformance",
+   "po_value_eur": 1128598.0,
+   "rate_pct": 0.04,
+   "title": "First invoice cleared before the first goods receipt on a 3-way item",
+   "value_share_pct": 0.11
+  },
+  {
+   "applicable_items": 1044,
+   "control": "gr_on_2way",
+   "exceptions": 0,
+   "family": "conformance",
+   "po_value_eur": 0.0,
+   "rate_pct": 0.0,
+   "title": "Goods receipt recorded on a 2-way item",
+   "value_share_pct": 0.0
+  },
+  {
+   "applicable_items": 14498,
+   "control": "invoice_on_consignment",
+   "exceptions": 0,
+   "family": "conformance",
+   "po_value_eur": 0.0,
+   "rate_pct": 0.0,
+   "title": "Invoice recorded or cleared on a consignment item",
+   "value_share_pct": 0.0
+  },
+  {
+   "applicable_items": 236192,
+   "control": "invoices_exceed_receipts",
+   "exceptions": 1644,
+   "family": "conformance",
+   "po_value_eur": 17104341.0,
+   "rate_pct": 0.7,
+   "title": "More net invoices than net goods receipts at the end of the log (3-way)",
+   "value_share_pct": 1.72
+  },
+  {
+   "applicable_items": 251734,
+   "control": "after_the_fact_po",
+   "exceptions": 3693,
+   "family": "purchasing",
+   "po_value_eur": 49659054.0,
+   "rate_pct": 1.47,
+   "title": "Vendor invoice dated before the PO item was created (local calendar date)",
+   "value_share_pct": 4.98
+  },
+  {
+   "applicable_items": 251734,
+   "control": "price_change_after_invoice",
+   "exceptions": 2374,
+   "family": "purchasing",
+   "po_value_eur": 87780826.0,
+   "rate_pct": 0.94,
+   "title": "Price changed after an invoice was recorded",
+   "value_share_pct": 8.81
+  },
+  {
+   "applicable_items": 251734,
+   "control": "invoice_cancelled",
+   "exceptions": 6471,
+   "family": "rework",
+   "po_value_eur": 113793628.0,
+   "rate_pct": 2.57,
+   "title": "At least one invoice receipt cancelled",
+   "value_share_pct": 11.42
+  },
+  {
+   "applicable_items": 251734,
+   "control": "gr_cancelled",
+   "exceptions": 2470,
+   "family": "rework",
+   "po_value_eur": 67839986.0,
+   "rate_pct": 0.98,
+   "title": "At least one goods receipt cancelled",
+   "value_share_pct": 6.81
+  },
+  {
+   "applicable_items": 251734,
+   "control": "payment_block_removed",
+   "exceptions": 55839,
+   "family": "process",
+   "po_value_eur": 281470191.0,
+   "rate_pct": 22.18,
+   "title": "Payment block removed manually or by batch",
+   "value_share_pct": 28.24
+  },
+  {
+   "applicable_items": 251734,
+   "control": "sod_create_and_receive",
+   "exceptions": 3825,
+   "family": "segregation of duties",
+   "po_value_eur": 40423066.0,
+   "rate_pct": 1.52,
+   "title": "Same person created the PO item and recorded its goods receipt",
+   "value_share_pct": 4.06
+  },
+  {
+   "applicable_items": 251734,
+   "control": "sod_create_and_invoice",
+   "exceptions": 0,
+   "family": "segregation of duties",
+   "po_value_eur": 0.0,
+   "rate_pct": 0.0,
+   "title": "Same person created the PO item and recorded its invoice",
+   "value_share_pct": 0.0
+  },
+  {
+   "applicable_items": 251734,
+   "control": "sod_invoice_and_clear",
+   "exceptions": 2526,
+   "family": "segregation of duties",
+   "po_value_eur": 61485108.0,
+   "rate_pct": 1.0,
+   "title": "Same person recorded the invoice and cleared it for payment",
+   "value_share_pct": 6.17
+  }
+ ],
+ "data_quality": {
+  "time_window": {
+   "events_after_2019_01_31": 9,
+   "events_before_2018": 318,
+   "first_event": "1948-01-26 22:59:00+00:00",
+   "last_event": "2020-04-09 21:59:00+00:00",
+   "po_items_created_outside_2018": 382
+  },
+  "users": {
+   "batch_users": 20,
+   "events_without_user_pct": 25.01,
+   "human_users": 607,
+   "no_user_by_activity_pct": {
+    "Clear Invoice": 2.0,
+    "Record Service Entry Sheet": 41.3,
+    "Vendor creates invoice": 55.1
+   }
+  },
+  "value_semantics": {
+   "invoice_events_equal_item_value_pct": 99.15,
+   "items": 251734,
+   "items_value_constant": 247102,
+   "items_value_constant_pct": 98.16,
+   "items_with_2plus_invoices": 9644,
+   "of_which_invoices_sum_to_item_value": 6,
+   "zero_value_items": 16385
+  }
+ },
+ "examples": [
+  {
+   "blurb": "Ordered, received, invoiced, paid. Nothing tripped.",
+   "case_id": "2000000000_00001",
+   "events": [
+    {
+     "step": "PO",
+     "t": "2018-01-02T13:53:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-01-02T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-03-06T06:44:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-03-06T07:53:00+00:00",
+     "user": "user_001"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-03-29T13:06:00+00:00",
+     "user": "user_002"
+    }
+   ],
+   "flow": "3-way, invoice before GR",
+   "key": "clean",
+   "pairs": [
+    {
+     "clear": "2018-03-29T13:06:00+00:00",
+     "gr": "2018-03-06T06:44:00+00:00",
+     "ir": "2018-03-06T07:53:00+00:00"
+    }
+   ],
+   "spend_area": "CAPEX & SOCS",
+   "title": "A clean item",
+   "tripped": [],
+   "unmatched_clears": 0,
+   "vendor": "vendorID_0000"
+  },
+  {
+   "blurb": "One line item, several receipts and invoices, each paid on its own.",
+   "case_id": "2000000014_00001",
+   "events": [
+    {
+     "step": "PO",
+     "t": "2018-01-11T15:41:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-02-06T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-02-16T15:47:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-02-19T13:20:00+00:00",
+     "user": "user_011"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-03-01T13:06:00+00:00",
+     "user": "user_005"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-03-29T21:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-04-10T14:08:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-04-10T14:22:00+00:00",
+     "user": "user_011"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-04-19T12:47:00+00:00",
+     "user": "user_002"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-06-25T21:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-07-24T10:29:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-07-25T13:00:00+00:00",
+     "user": "user_012"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-07-26T16:09:00+00:00",
+     "user": "user_002"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-09-13T21:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-09-14T12:44:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-09-17T09:25:00+00:00",
+     "user": "user_012"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-10-04T14:50:00+00:00",
+     "user": "user_002"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-11-14T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-11-28T12:23:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-11-29T12:41:00+00:00",
+     "user": "user_013"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-12-07T08:08:00+00:00",
+     "user": "user_002"
+    }
+   ],
+   "flow": "3-way, invoice after GR",
+   "key": "recurring",
+   "pairs": [
+    {
+     "clear": "2018-03-01T13:06:00+00:00",
+     "gr": "2018-02-16T15:47:00+00:00",
+     "ir": "2018-02-19T13:20:00+00:00"
+    },
+    {
+     "clear": "2018-04-19T12:47:00+00:00",
+     "gr": "2018-04-10T14:08:00+00:00",
+     "ir": "2018-04-10T14:22:00+00:00"
+    },
+    {
+     "clear": "2018-07-26T16:09:00+00:00",
+     "gr": "2018-07-24T10:29:00+00:00",
+     "ir": "2018-07-25T13:00:00+00:00"
+    },
+    {
+     "clear": "2018-10-04T14:50:00+00:00",
+     "gr": "2018-09-14T12:44:00+00:00",
+     "ir": "2018-09-17T09:25:00+00:00"
+    },
+    {
+     "clear": "2018-12-07T08:08:00+00:00",
+     "gr": "2018-11-28T12:23:00+00:00",
+     "ir": "2018-11-29T12:41:00+00:00"
+    }
+   ],
+   "spend_area": "Marketing",
+   "title": "Recurring billing",
+   "tripped": [],
+   "unmatched_clears": 0,
+   "vendor": "vendorID_0013"
+  },
+  {
+   "blurb": "A 3-way item whose invoice was cleared with no surviving receipt.",
+   "case_id": "4507001020_00110",
+   "events": [
+    {
+     "step": "PO",
+     "t": "2018-01-04T13:36:00+00:00",
+     "user": "user_057"
+    },
+    {
+     "step": "GR",
+     "t": "2018-01-22T10:58:00+00:00",
+     "user": "user_035"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-01-22T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "IR",
+     "t": "2018-01-23T09:05:00+00:00",
+     "user": "batch_00"
+    },
+    {
+     "step": "xGR",
+     "t": "2018-01-23T12:12:00+00:00",
+     "user": "user_034"
+    },
+    {
+     "step": "xIR",
+     "t": "2018-03-14T14:31:00+00:00",
+     "user": "user_012"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-04-26T09:12:00+00:00",
+     "user": "user_002"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-05-24T11:32:00+00:00",
+     "user": "user_002"
+    }
+   ],
+   "flow": "3-way, invoice before GR",
+   "key": "cleared_without_gr",
+   "pairs": [],
+   "spend_area": "Packaging",
+   "title": "Paid with no goods receipt",
+   "tripped": [
+    "cleared_without_gr",
+    "invoice_cancelled",
+    "gr_cancelled"
+   ],
+   "unmatched_clears": 2,
+   "vendor": "vendorID_0120"
+  },
+  {
+   "blurb": "The vendor's invoice is dated before the PO item existed.",
+   "case_id": "2000000009_00001",
+   "events": [
+    {
+     "step": "VINV",
+     "t": "2018-01-02T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "PO",
+     "t": "2018-01-09T13:14:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "GR",
+     "t": "2018-03-08T07:27:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-03-09T15:47:00+00:00",
+     "user": "user_001"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-03-15T13:13:00+00:00",
+     "user": "user_005"
+    }
+   ],
+   "flow": "3-way, invoice after GR",
+   "key": "after_the_fact_po",
+   "pairs": [
+    {
+     "clear": "2018-03-15T13:13:00+00:00",
+     "gr": "2018-03-08T07:27:00+00:00",
+     "ir": "2018-03-09T15:47:00+00:00"
+    }
+   ],
+   "spend_area": "CAPEX & SOCS",
+   "title": "Invoice before the order",
+   "tripped": [
+    "after_the_fact_po"
+   ],
+   "unmatched_clears": 0,
+   "vendor": "vendorID_0008"
+  },
+  {
+   "blurb": "An invoice receipt was cancelled and booked again.",
+   "case_id": "2000000005_00001",
+   "events": [
+    {
+     "step": "PO",
+     "t": "2018-01-08T10:09:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-01-08T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-01-19T08:09:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-04-03T04:26:00+00:00",
+     "user": "user_006"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-04-05T13:51:00+00:00",
+     "user": "user_002"
+    },
+    {
+     "step": "xIR",
+     "t": "2018-08-02T07:15:00+00:00",
+     "user": "user_007"
+    },
+    {
+     "step": "IR",
+     "t": "2018-08-02T07:17:00+00:00",
+     "user": "user_007"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-08-02T07:19:00+00:00",
+     "user": "user_007"
+    }
+   ],
+   "flow": "3-way, invoice before GR",
+   "key": "invoice_cancelled",
+   "pairs": [
+    {
+     "clear": "2018-08-02T07:19:00+00:00",
+     "gr": "2018-01-19T08:09:00+00:00",
+     "ir": "2018-08-02T07:17:00+00:00"
+    }
+   ],
+   "spend_area": "Workforce Services",
+   "title": "Invoice reversed and re-entered",
+   "tripped": [
+    "invoice_cancelled",
+    "sod_invoice_and_clear"
+   ],
+   "unmatched_clears": 1,
+   "vendor": "vendorID_0004"
+  },
+  {
+   "blurb": "The same person recorded the invoice and cleared it.",
+   "case_id": "2000000097_00001",
+   "events": [
+    {
+     "step": "PO",
+     "t": "2018-01-29T09:09:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-02-23T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "GR",
+     "t": "2018-02-26T11:06:00+00:00",
+     "user": "user_000"
+    },
+    {
+     "step": "IR",
+     "t": "2018-02-26T12:06:00+00:00",
+     "user": "batch_00"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-03-15T13:13:00+00:00",
+     "user": "user_005"
+    },
+    {
+     "step": "xIR",
+     "t": "2018-11-05T14:30:00+00:00",
+     "user": "user_019"
+    },
+    {
+     "step": "IR",
+     "t": "2018-11-05T14:32:00+00:00",
+     "user": "user_019"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-11-05T14:32:00+00:00",
+     "user": "user_019"
+    },
+    {
+     "step": "VINV",
+     "t": "2018-11-09T22:59:00+00:00",
+     "user": "NONE"
+    },
+    {
+     "step": "xIR",
+     "t": "2018-11-12T08:57:00+00:00",
+     "user": "user_015"
+    },
+    {
+     "step": "IR",
+     "t": "2018-11-12T08:58:00+00:00",
+     "user": "user_015"
+    },
+    {
+     "step": "CLR",
+     "t": "2018-11-29T15:15:00+00:00",
+     "user": "user_002"
+    }
+   ],
+   "flow": "3-way, invoice after GR",
+   "key": "sod_invoice_and_clear",
+   "pairs": [
+    {
+     "clear": "2018-11-29T15:15:00+00:00",
+     "gr": "2018-02-26T11:06:00+00:00",
+     "ir": "2018-11-12T08:58:00+00:00"
+    }
+   ],
+   "spend_area": "Marketing",
+   "title": "One person, two roles",
+   "tripped": [
+    "invoice_cancelled",
+    "sod_invoice_and_clear"
+   ],
+   "unmatched_clears": 2,
+   "vendor": "vendorID_0052"
+  }
+ ],
+ "interface_users": {
+  "user_000": 0.9931
+ },
+ "matching": {
+  "invoices_cleared": 187240,
+  "invoices_surviving": 222698,
+  "invoices_with_gr": 219770,
+  "items_with_unmatched_clears": 4524
+ },
+ "naive_vs_matched": {
+  "items_with_2plus_cleared_invoices": 1915,
+  "matched_median_days": 32.1,
+  "naive_median_days": 94.0
+ },
+ "payment_block_by_flow": [
+  {
+   "exceptions": 53608,
+   "flow": "3way_before_gr",
+   "items": 221010,
+   "rate_pct": 24.26
+  },
+  {
+   "exceptions": 2230,
+   "flow": "3way_after_gr",
+   "items": 15182,
+   "rate_pct": 14.69
+  },
+  {
+   "exceptions": 1,
+   "flow": "2way",
+   "items": 1044,
+   "rate_pct": 0.1
+  },
+  {
+   "exceptions": 0,
+   "flow": "consignment",
+   "items": 14498,
+   "rate_pct": 0.0
+  }
+ ],
+ "payment_runs": {
+  "clears": 194393,
+  "top_clearing_user": "user_002",
+  "top_clearing_user_distinct_days": 94,
+  "top_clearing_user_share_pct": 85.58,
+  "weekday_share_pct": {
+   "Friday": 19.08,
+   "Monday": 0.62,
+   "Saturday": 0.06,
+   "Sunday": 0.1,
+   "Thursday": 75.06,
+   "Tuesday": 1.41,
+   "Wednesday": 3.67
+  }
+ },
+ "population": {
+  "activities": 42,
+  "events": 1595923,
+  "flow_mix": {
+   "2-way": 1044,
+   "3-way, invoice after GR": 15182,
+   "3-way, invoice before GR": 221010,
+   "Consignment": 14498
+  },
+  "items": 251734,
+  "purchase_documents": 76349
+ },
+ "sod_concentration": {
+  "sod_create_and_invoice": {
+   "conflicting_user_items": 0,
+   "distinct_users": 0,
+   "top1_share_pct": 0.0,
+   "top_users": []
+  },
+  "sod_create_and_receive": {
+   "conflicting_user_items": 3825,
+   "distinct_users": 46,
+   "top1_share_pct": 26.17,
+   "top_users": [
+    [
+     "user_138",
+     1001
+    ],
+    [
+     "user_136",
+     691
+    ],
+    [
+     "user_200",
+     536
+    ],
+    [
+     "user_164",
+     237
+    ],
+    [
+     "user_172",
+     226
+    ]
+   ]
+  },
+  "sod_invoice_and_clear": {
+   "conflicting_user_items": 2628,
+   "distinct_users": 15,
+   "top1_share_pct": 29.91,
+   "top_users": [
+    [
+     "user_015",
+     786
+    ],
+    [
+     "user_013",
+     368
+    ],
+    [
+     "user_006",
+     356
+    ],
+    [
+     "user_012",
+     315
+    ],
+    [
+     "user_004",
+     279
+    ]
+   ]
+  }
+ },
+ "sod_including_interface_accounts": {
+  "sod_create_and_invoice": 0,
+  "sod_create_and_receive": 5149,
+  "sod_invoice_and_clear": 2526
+ },
+ "throughput": [
+  {
+   "cleared_invoices": 297,
+   "flow": "2way",
+   "gr_to_ir_days_median": null,
+   "gr_to_ir_days_p90": null,
+   "ir_to_clear_days_median": 5.2,
+   "ir_to_clear_days_p90": 21.9,
+   "label": "2-way",
+   "ready_to_clear_days_median": 5.2,
+   "ready_to_clear_days_p90": 21.9
+  },
+  {
+   "cleared_invoices": 13110,
+   "flow": "3way_after_gr",
+   "gr_to_ir_days_median": 20.0,
+   "gr_to_ir_days_p90": 69.2,
+   "ir_to_clear_days_median": 28.0,
+   "ir_to_clear_days_p90": 80.0,
+   "label": "3-way, invoice after GR",
+   "ready_to_clear_days_median": 28.0,
+   "ready_to_clear_days_p90": 80.0
+  },
+  {
+   "cleared_invoices": 173833,
+   "flow": "3way_before_gr",
+   "gr_to_ir_days_median": 8.8,
+   "gr_to_ir_days_p90": 45.2,
+   "ir_to_clear_days_median": 42.2,
+   "ir_to_clear_days_p90": 97.7,
+   "label": "3-way, invoice before GR",
+   "ready_to_clear_days_median": 42.1,
+   "ready_to_clear_days_p90": 97.2
+  }
+ ],
+ "variants": {
+  "2way": {
+   "distinct_variants": 15,
+   "items": 1044,
+   "top": [
+    {
+     "cumulative_pct": 34.2,
+     "items": 357,
+     "share_pct": 34.2,
+     "variant": "PO"
+    },
+    {
+     "cumulative_pct": 67.15,
+     "items": 344,
+     "share_pct": 32.95,
+     "variant": "VINV>PO>IR"
+    },
+    {
+     "cumulative_pct": 91.28,
+     "items": 252,
+     "share_pct": 24.14,
+     "variant": "VINV>PO>IR>CLR"
+    },
+    {
+     "cumulative_pct": 94.35,
+     "items": 32,
+     "share_pct": 3.07,
+     "variant": "PO>VINV>IR>CLR"
+    },
+    {
+     "cumulative_pct": 96.36,
+     "items": 21,
+     "share_pct": 2.01,
+     "variant": "PO>VINV>IR"
+    }
+   ],
+   "variants_for_80pct": 3
+  },
+  "3way_after_gr": {
+   "distinct_variants": 748,
+   "items": 15182,
+   "top": [
+    {
+     "cumulative_pct": 23.12,
+     "items": 3510,
+     "share_pct": 23.12,
+     "variant": "PO>VINV>GR>IR>CLR"
+    },
+    {
+     "cumulative_pct": 44.3,
+     "items": 3215,
+     "share_pct": 21.18,
+     "variant": "PO>GR"
+    },
+    {
+     "cumulative_pct": 64.78,
+     "items": 3110,
+     "share_pct": 20.48,
+     "variant": "PO>GR>VINV>IR>CLR"
+    },
+    {
+     "cumulative_pct": 70.24,
+     "items": 829,
+     "share_pct": 5.46,
+     "variant": "PO>VINV>GR>IR>UNBLOCK>CLR"
+    },
+    {
+     "cumulative_pct": 74.65,
+     "items": 670,
+     "share_pct": 4.41,
+     "variant": "PO>GR>VINV>IR>UNBLOCK>CLR"
+    }
+   ],
+   "variants_for_80pct": 7
+  },
+  "3way_before_gr": {
+   "distinct_variants": 1688,
+   "items": 221010,
+   "top": [
+    {
+     "cumulative_pct": 31.74,
+     "items": 70155,
+     "share_pct": 31.74,
+     "variant": "PO>VINV>GR>IR>CLR"
+    },
+    {
+     "cumulative_pct": 53.48,
+     "items": 48050,
+     "share_pct": 21.74,
+     "variant": "PO>GR>VINV>IR>CLR"
+    },
+    {
+     "cumulative_pct": 61.07,
+     "items": 16771,
+     "share_pct": 7.59,
+     "variant": "PO>VINV>GR>IR>UNBLOCK>CLR"
+    },
+    {
+     "cumulative_pct": 67.05,
+     "items": 13207,
+     "share_pct": 5.98,
+     "variant": "PO"
+    },
+    {
+     "cumulative_pct": 72.75,
+     "items": 12592,
+     "share_pct": 5.7,
+     "variant": "PO>GR>VINV>IR>UNBLOCK>CLR"
+    }
+   ],
+   "variants_for_80pct": 7
+  },
+  "consignment": {
+   "distinct_variants": 6,
+   "items": 14498,
+   "top": [
+    {
+     "cumulative_pct": 91.46,
+     "items": 13260,
+     "share_pct": 91.46,
+     "variant": "PO>GR"
+    },
+    {
+     "cumulative_pct": 98.58,
+     "items": 1032,
+     "share_pct": 7.12,
+     "variant": "PO"
+    },
+    {
+     "cumulative_pct": 99.34,
+     "items": 110,
+     "share_pct": 0.76,
+     "variant": "PO>GR>xGR>GR"
+    },
+    {
+     "cumulative_pct": 99.95,
+     "items": 89,
+     "share_pct": 0.61,
+     "variant": "PO>GR>xGR"
+    },
+    {
+     "cumulative_pct": 99.98,
+     "items": 4,
+     "share_pct": 0.03,
+     "variant": "PO>GR>xGR>GR>xGR>GR"
+    }
+   ],
+   "variants_for_80pct": 1
+  }
+ }
+}

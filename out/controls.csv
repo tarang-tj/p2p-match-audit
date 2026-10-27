@@ -1,0 +1,15 @@
+control,title,family,applicable_items,exceptions,rate_pct,po_value_eur,value_share_pct
+ir_before_gr_gr_based,Invoice recorded before any goods receipt on a GR-based item,conformance,15182,0,0.0,0.0,0.0
+cleared_without_gr,Invoice cleared with no net goods receipt on a 3-way item,conformance,236192,674,0.29,1189747.0,0.12
+cleared_before_gr,First invoice cleared before the first goods receipt on a 3-way item,conformance,236192,89,0.04,1128598.0,0.11
+gr_on_2way,Goods receipt recorded on a 2-way item,conformance,1044,0,0.0,0.0,0.0
+invoice_on_consignment,Invoice recorded or cleared on a consignment item,conformance,14498,0,0.0,0.0,0.0
+invoices_exceed_receipts,More net invoices than net goods receipts at the end of the log (3-way),conformance,236192,1644,0.7,17104341.0,1.72
+after_the_fact_po,Vendor invoice dated before the PO item was created (local calendar date),purchasing,251734,3693,1.47,49659054.0,4.98
+price_change_after_invoice,Price changed after an invoice was recorded,purchasing,251734,2374,0.94,87780826.0,8.81
+invoice_cancelled,At least one invoice receipt cancelled,rework,251734,6471,2.57,113793628.0,11.42
+gr_cancelled,At least one goods receipt cancelled,rework,251734,2470,0.98,67839986.0,6.81
+payment_block_removed,Payment block removed manually or by batch,process,251734,55839,22.18,281470191.0,28.24
+sod_create_and_receive,Same person created the PO item and recorded its goods receipt,segregation of duties,251734,3825,1.52,40423066.0,4.06
+sod_create_and_invoice,Same person created the PO item and recorded its invoice,segregation of duties,251734,0,0.0,0.0,0.0
+sod_invoice_and_clear,Same person recorded the invoice and cleared it for payment,segregation of duties,251734,2526,1.0,61485108.0,6.17
