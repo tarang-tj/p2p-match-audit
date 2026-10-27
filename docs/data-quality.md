@@ -6,7 +6,7 @@ van Dongen, B.F., Dataset BPI Challenge 2019, 4TU.Centre for Research Data, http
 
 On 2026-10-26, data.4tu.nl did not respond on IPv4 or IPv6, so the XES file was taken from a Kaggle mirror (`aaminaalzeri/bpi-challenge-2019-dataset`, file `BPI_Challenge_2019.xes`, 728,558,522 bytes, SHA-256 `af63bc687fc4152f2123b05c3af7772b37ef3fce2d3f67f812666c9e356baae7`). A mirror can be altered, so `scripts/reconcile.py` checks the parsed log against every figure the publisher states: 251,734 items, 1,595,923 events, 76,349 purchase documents, 42 activities, 607 human and 20 batch users. All match exactly.
 
-License: not confirmed this session because 4TU was unreachable. Before publishing anything beyond aggregates, read the license on the 4TU record.
+License: Creative Commons Attribution 4.0 International (CC BY 4.0), per the DOI's DataCite record (api.datacite.org, rightsIdentifier `cc-by-4.0`), checked 2026-10-26 while data.4tu.nl was down. Changes made: the log was parsed and aggregated; the page and outputs publish counts, shares and six example items, not the raw log.
 
 ## What the log cannot support
 

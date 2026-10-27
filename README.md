@@ -44,4 +44,6 @@ web/         static page (no build step); data/site.json is generated
 docs/        findings memo, control definitions, matching rule, data quality
 ```
 
+Data: BPI Challenge 2019, van Dongen, B.F., 4TU.Centre for Research Data, doi:10.4121/uuid:d06aff4b-79f0-45e6-8ec8-e19730c248f1, licensed CC BY 4.0. This repository publishes derived aggregates and six example items, not the raw log.
+
 Values in the log are anonymized by linear scaling, so results are counts and shares of ordered value, never euros. Names of companies, vendors and users are the publisher's anonymized IDs. The source does not name the ERP product, and this project does not claim one.
