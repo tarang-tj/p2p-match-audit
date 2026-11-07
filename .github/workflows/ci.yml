@@ -1,0 +1,26 @@
+name: gate
+# Runs the parts of `make gate` that work on committed files only.
+# audit and reconcile need data/*.parquet built from the raw BPI log (make data),
+# which is not committed, so they stay local. site.json is checked as committed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install pandas pyarrow lxml flake8
+      - run: make lint test memo PY=python
+      - run: npm ci && npx playwright install --with-deps chromium
+      - run: node scripts/verify_boot.mjs
