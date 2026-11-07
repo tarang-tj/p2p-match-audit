@@ -4,7 +4,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/hero-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/img/hero-light.svg">
-  <img src="docs/img/hero-dark.svg" width="100%" alt="p2p-match-audit: 251,734 purchase-order items, three-way matched">
+  <img src="docs/img/hero-dark.svg" width="100%" alt="p2p-match-audit: 251,734 purchase-order items from a real ERP log, audited">
 </picture>
 
 [![gate](https://github.com/tarang-tj/p2p-match-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/tarang-tj/p2p-match-audit/actions/workflows/ci.yml)
