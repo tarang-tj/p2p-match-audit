@@ -1,14 +1,36 @@
 # Three-way match audit
 
-A procurement controls audit of a real ERP purchase-to-pay log: 251,734 purchase-order items and 1,595,923 events from one multinational company's 2018 purchasing (BPI Challenge 2019).
+<!-- Hero card: rendered by tarang-tj/tarang-tj (node scripts/render-repo-hero.mjs p2p docs/img), same number as the profile tile. -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/hero-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/img/hero-light.svg">
+  <img src="docs/img/hero-dark.svg" width="100%" alt="p2p-match-audit: 251,734 purchase-order items, three-way matched">
+</picture>
+
+[![gate](https://github.com/tarang-tj/p2p-match-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/tarang-tj/p2p-match-audit/actions/workflows/ci.yml)
+[![live page](https://img.shields.io/badge/live-page-3fb950)](https://tarang-tj.github.io/p2p-match-audit/)
+[![license](https://img.shields.io/github/license/tarang-tj/p2p-match-audit)](LICENSE)
+[![data](https://img.shields.io/badge/data-BPI%20Challenge%202019%20(CC%20BY%204.0)-555)](docs/data-quality.md)
+
+**Before a supplier gets paid, do the purchase order, the goods receipt and the invoice agree?** A procurement controls audit of a real ERP purchase-to-pay log: 251,734 purchase-order items and 1,595,923 events from one multinational company's 2018 purchasing.
+
+| check | what the log shows |
+|---|---|
+| Invoice before goods receipt, where the system requires the receipt first | 0 of 15,182 items. The system holds the line. |
+| Order raised after the invoice | 3,693 items (1.47%), 1,215 of them from one vendor |
+| Invoice cleared with no goods received | 674 of 236,192 three-way items |
+| Same person records and clears an invoice | 2,526 items, from 15 people |
+| Payment day | 75.06% of clearings happen on a Thursday |
+
+**[Live page](https://tarang-tj.github.io/p2p-match-audit/)** · [Findings memo](docs/findings.md) · [Controls](docs/controls.md) · [What the data cannot show](docs/data-quality.md)
+
+## What it answers
 
 Before a supplier is paid, three documents should agree: the purchase order, the goods receipt and the invoice. This project checks how often that held, where it broke, and how long payment took. It answers the three questions the company's process owner posed with the dataset:
 
 1. **Which process models describe the data?** Variants per matching rule (`src/p2p/variants.py`). Seven variants cover 80% of the 221,010 invoice-before-GR items.
 2. **What is the invoice throughput, matching receipts to invoices to payments?** An order-based matcher (`src/p2p/matching.py`, rules in `docs/matching.md`).
 3. **Which purchases stand out?** Fourteen controls across conformance, purchasing discipline, rework and segregation of duties (`src/p2p/controls.py`, definitions in `docs/controls.md`).
-
-Findings memo: [`docs/findings.md`](docs/findings.md). What the data cannot show: [`docs/data-quality.md`](docs/data-quality.md).
 
 ## Run
 
