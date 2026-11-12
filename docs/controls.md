@@ -43,3 +43,7 @@ A conflict needs one human user (named `user_NNN`) in both roles on the same ite
 | sod_invoice_and_clear | Record Invoice Receipt and Clear Invoice |
 
 Interface accounts are detected, not listed by hand (`data_quality.interface_users`): a human-named user with at least 100 PO creations, 95% or more of which fall in the same minute as an SRM shopping-cart event on the same item. In this log that is user_000 alone.
+
+## In the browser
+
+`web/audit.js` is the same 14 controls in JavaScript, so the live page can run them on a seeded random 5,000 items (`web/data/sample.json`, built by `scripts/build_sample.py`). The interface accounts ship with the sample, because they are detected on the full log and 5,000 items are too few to detect them. Two checks keep the port honest: the builder refuses a sample whose Python flags differ from the full-log run, and `tests/test_browser_parity.py` requires `audit.js` to give the Python answer on every flag of every sampled item and of 17 hand-built edge items. The first screen counts the 13 rule controls; payment_block_removed is process volume and is left out of that count.

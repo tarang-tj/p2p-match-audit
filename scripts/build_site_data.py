@@ -90,7 +90,8 @@ def main() -> None:
             "tripped": tripped,
         })
 
-    site = {k: summary[k] for k in ("population", "data_quality", "controls", "sod_concentration",
+    site = {k: summary[k] for k in ("population", "any_exception", "data_quality", "controls",
+                                    "sod_concentration",
                                     "sod_including_interface_accounts", "interface_users",
                                     "payment_runs", "payment_block_by_flow", "throughput",
                                     "block_effect", "naive_vs_matched", "matching", "variants")}

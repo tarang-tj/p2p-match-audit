@@ -56,6 +56,9 @@ def main() -> None:
                          "time_window": data_quality.time_window(events, facts),
                          "users": data_quality.users(events)},
         "controls": controls.to_dict(orient="records"),
+        # items failing at least one rule control (payment_block_removed is process volume, not a rule)
+        "any_exception": int((flags.drop(columns="payment_block_removed") == True)  # noqa: E712
+                             .any(axis=1).sum()),
         "sod_concentration": summarize.sod_concentration(roles, flags),
         "sod_including_interface_accounts": {
             k: int((flags_raw[k] == True).sum())  # noqa: E712

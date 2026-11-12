@@ -162,6 +162,13 @@
       renderTime(site);
       renderData(site);
       document.body.dataset.ready = "true";
+      return fetch("data/sample.json")
+        .then((r) => { if (!r.ok) throw new Error(`sample.json: HTTP ${r.status}`); return r.json(); })
+        .then((sample) => window.HeroRun.start(site, sample))
+        .catch((err) => {
+          document.body.dataset.run = "error";
+          $("runStatus").textContent = `Could not run the audit here (${err.message}).`;
+        });
     })
     .catch((err) => {
       document.body.dataset.ready = "error";

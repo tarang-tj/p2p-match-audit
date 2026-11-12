@@ -23,6 +23,8 @@ memo:
 
 site:
 	$(PY) scripts/build_site_data.py
+	$(PY) scripts/build_sample.py
+	$(PY) -m unittest tests.test_browser_parity
 	node scripts/verify_boot.mjs
 
 # The only gate. A partial run does not count.

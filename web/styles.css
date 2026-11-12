@@ -41,6 +41,7 @@ h1 {
 h2 { font-stretch: 100%; font-weight: 700; font-size: 1.6rem; line-height: 1.2; margin: 0 0 .5rem; }
 h3 { font-weight: 650; font-size: 1.15rem; margin: 0 0 .25rem; }
 .lede { font-size: 1.2rem; color: var(--muted); }
+.run .lede { margin: 0; }
 .lede strong { color: var(--ink); }
 section { padding-top: 3.5rem; margin-top: 3.5rem; border-top: 1px solid var(--rule); }
 
@@ -76,6 +77,7 @@ table.controls { width: 100%; border-collapse: collapse; font-size: .97rem; tabl
 .controls th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--rule); padding: .5rem .4rem; }
 .controls td { border-bottom: 1px solid var(--rule); padding: .6rem .4rem; vertical-align: top; }
 .controls .num { text-align: right; white-space: nowrap; }
+.controls th.num { padding-right: .9rem; }
 .controls .family { display: block; color: var(--muted); font-size: .85rem; }
 .bar-col { width: 32%; }
 .rate { display: flex; align-items: center; gap: .5rem; }
@@ -96,7 +98,45 @@ table.controls { width: 100%; border-collapse: collapse; font-size: .97rem; tabl
 .notes strong { font-weight: 650; }
 footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
 
+.kicker { margin: 3rem 0 0; font-size: .85rem; font-weight: 650; color: var(--flag); letter-spacing: .01em; }
+.run h1 { margin-top: .6rem; max-width: 26ch; font-size: clamp(2rem, 4.2vw, 3.1rem); }
+.run-board { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 1.25rem; margin: 1.5rem 0 1rem; align-items: start; }
+.run-grid { min-width: 0; }
+.run-grid canvas { display: block; cursor: crosshair; }
+.run-ticker { list-style: none; margin: 0; padding: 0; font-size: .88rem; }
+.run-ticker button { all: unset; box-sizing: border-box; width: 100%; display: grid; cursor: pointer;
+  grid-template-columns: minmax(0, 1fr) 2.6rem 4.6rem; gap: .4rem; padding: .16rem .35rem; white-space: nowrap; border-radius: 3px; color: var(--muted); }
+.run-ticker button:focus-visible { outline: 2px solid var(--po); }
+.run-ticker .name { overflow: hidden; text-overflow: ellipsis; }
+.run-ticker .k { text-align: right; font-weight: 700; }
+.run-ticker .full { text-align: right; font-size: .8rem; }
+.run-ticker li.fired button { color: var(--ink); }
+.run-ticker li.fired .k { color: var(--flag); }
+.run-ticker li button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.run-ticker li button[aria-pressed="true"] .k { color: var(--paper); }
+.run-ticker button[aria-disabled="true"] { cursor: default; }
+.run-compare { max-width: 46rem; }
+.cmp { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 4rem; gap: .75rem; align-items: center; margin: .35rem 0; font-size: .95rem; }
+.cmp .trk { height: 1.1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.cmp .fill { display: block; height: 100%; width: calc(var(--w, 0) * 100%); background: var(--flag); }
+.cmp .fill.full { background: var(--muted); }
+.cmp b { text-align: right; font-size: 1.15rem; }
+.scale { font-size: .85rem; color: var(--muted); margin: .4rem 0 0; }
+.run-actions { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; margin-top: 1.1rem; }
+.run-actions button { font: inherit; font-size: .95rem; padding: .5rem .95rem; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--paper); }
+.run-actions button.ghost { background: var(--sheet); color: var(--ink); }
+.run-actions button:disabled { opacity: .45; cursor: default; }
+.status { color: var(--muted); font-size: .92rem; }
+.pick { min-height: 3em; font-size: .95rem; margin: .5rem 0 0; }
+
+@media (max-width: 860px) {
+  .run-board { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
+  .cmp { grid-template-columns: 1fr 3.6rem; gap: .2rem .6rem; }
+  .cmp .lbl { grid-column: 1 / -1; }
+  .run-ticker button { white-space: normal; grid-template-columns: minmax(0, 1fr) 2.4rem 4.2rem; }
   body { font-size: 1rem; }
   .bar-col { width: 34%; }
   .controls th.num, .controls td.num { width: 22%; }
@@ -107,4 +147,5 @@ footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule
 }
 @media (prefers-reduced-motion: no-preference) {
   .bar-fill, .rate .fill { transition: width .5s ease-out; }
+  .cmp .fill { transition: width .35s ease-out; }
 }

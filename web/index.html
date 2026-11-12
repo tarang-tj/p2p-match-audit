@@ -12,8 +12,30 @@
 </head>
 <body>
 <main>
-  <header class="hero">
-    <h1>Before a supplier gets paid, three documents have to agree.</h1>
+  <header class="run" id="run">
+    <p class="kicker">Procurement controls audit · a real ERP purchase-to-pay log, 2018</p>
+    <h1>5,000 real purchase-order items. 13 checks. <span id="runAny">…</span> fail at least one.</h1>
+    <p class="lede">Running in your browser on a random 5,000 of the log's <span id="runFullItems">…</span> items, with the full audit's rules.
+      A test checks every flag here against the Python run.</p>
+    <div class="run-board">
+      <div class="run-grid"><canvas id="runCanvas" role="img" aria-label="5,000 purchase-order items; marked cells failed at least one check"></canvas>
+        <p id="runPick" class="pick" aria-live="polite"></p></div>
+      <ol class="run-ticker" id="runTicker" aria-label="Checks: exceptions in this sample, rate in the full log"></ol>
+    </div>
+    <div class="run-compare" aria-label="Share of items failing at least one check">
+      <div class="cmp"><span class="lbl">This sample, in your browser</span><span class="trk"><span class="fill" id="barSample"></span></span><b id="barSampleVal">…</b></div>
+      <div class="cmp"><span class="lbl">Full log, every item</span><span class="trk"><span class="fill full" id="barFull"></span></span><b id="barFullVal">…</b></div>
+      <p class="scale">Bars run 0 to 10%. The fourteenth control, payment blocks removed, is process volume rather than a broken rule, so it is in the table below but not counted here.</p>
+    </div>
+    <div class="run-actions">
+      <button type="button" id="runAgain" disabled>Run the audit again</button>
+      <button type="button" id="runFailed" class="ghost" disabled>Show a failed item</button>
+      <span id="runStatus" class="status" aria-live="polite">Loading 5,000 items…</span>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="h-rule">
+    <h2 id="h-rule">Before a supplier gets paid, three documents have to agree.</h2>
     <p class="lede">A purchase order says what was bought. A goods receipt says it arrived. An invoice says what is owed.
       This is an audit of how often that rule held across <strong id="heroItems">…</strong> real purchase-order items
       from a multinational coatings company's ERP, 2018.</p>
@@ -26,7 +48,7 @@
       <li><span class="sw clr"></span>Cleared for payment</li>
       <li><span class="sw vinv"></span>Vendor's invoice date</li>
     </ul>
-  </header>
+  </section>
 
   <section aria-labelledby="h-explore">
     <h2 id="h-explore">Walk one item through the controls</h2>
@@ -69,11 +91,13 @@
       <a href="https://doi.org/10.4121/uuid:d06aff4b-79f0-45e6-8ec8-e19730c248f1">doi:10.4121/uuid:d06aff4b-79f0-45e6-8ec8-e19730c248f1</a>.
       Company, vendor and user names are anonymized by the publisher. The source does not name the ERP product.
       Values are anonymized by linear scaling, so this page reports counts and shares, not euros.
-      Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; this page shows aggregates and six example items derived from it.</p>
+      Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; this page shows aggregates, six example items and a random 5,000-item sample (control-relevant events only) derived from it.</p>
     <p>Analysis and code: Tarang Jammalamadaka.</p>
   </footer>
 </main>
 <script src="flow-chart.js"></script>
+<script src="audit.js"></script>
+<script src="hero-run.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
