@@ -14,6 +14,8 @@
 
 **[Run the audit in your browser](https://tarang-tj.github.io/p2p-match-audit/):** 5,000 real purchase-order items, 13 checks, one at a time. 390 fail at least one (7.80%); across all 251,734 items the same audit flags 7.21%. Tap a check to see only its items, or tap an item to see why it failed.
 
+[![The live page running 13 checks on 5,000 items, then focusing one check and showing a failed item](docs/img/audit.gif)](https://tarang-tj.github.io/p2p-match-audit/)
+
 **Before a supplier gets paid, do the purchase order, the goods receipt and the invoice agree?** A procurement controls audit of a real ERP purchase-to-pay log: 251,734 purchase-order items and 1,595,923 events from one multinational company's 2018 purchasing.
 
 | check | what the log shows |
