@@ -4,6 +4,8 @@ Each control is evaluated per purchase-order item (one XES trace). "Applies to" 
 
 Net goods receipts = Record Goods Receipt minus Cancel Goods Receipt. Net invoices = Record Invoice Receipt plus Record Subsequent Invoice minus Cancel Invoice Receipt.
 
+"Cancel Subsequent Invoice" is left out of net invoices on purpose. The log has 491 of them against only 167 "Record Subsequent Invoice" events, and 477 of the 491 occur on an item with no subsequent invoice open to cancel. Their position says what they are: the most common sequences are invoice receipt, then Cancel Subsequent Invoice, then one or two clearings (313 of them directly follow an invoice receipt and 428 are directly followed by a clearing). A real reversal would not be paid afterwards; an adjustment document (a credit or debit memo against the invoice) would. The challenge documentation does not define the activity, so this reading comes from event order, not from the source. Counting them as cancellations would create "cleared with no net invoice" exceptions on items whose invoice was paid.
+
 ## Conformance: does the item follow its own matching rule?
 
 | Key | Exception when | Applies to | Why it matters |
