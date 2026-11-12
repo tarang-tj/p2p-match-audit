@@ -82,8 +82,7 @@
       list.appendChild(li);
     }
 
-    function setCount(n) {
-      $("runAny").textContent = fmt(n);
+    function setCount(n) {          // the bars and grid count up; the headline already states the answer
       $("barSample").style.setProperty("--w", (100 * n) / rows.length / 10 + "");
       $("barSampleVal").textContent = pct(n, rows.length);
     }
@@ -160,6 +159,7 @@
     $("barFull").style.setProperty("--w", (100 * site.any_exception) / site.population.items / 10 + "");
     $("barFullVal").textContent = pct(site.any_exception, site.population.items);
     $("runFullItems").textContent = fmt(site.population.items);
+    $("runAny").textContent = fmt(rows.filter((r) => rules.some((t) => r.flags[t.key] === true)).length);
     layout();
     play();
     if (done) done(rows, rules);

@@ -58,6 +58,9 @@ for (const [name, width, height, motion] of [["desktop", 1440, 900, "no-preferen
   const tag = `[${name}]`;
   check(await page.evaluate(() => document.body.dataset.ready) === "true", `${tag} page did not reach ready`);
 
+  // The headline states the answer from the first frame; only the grid and bars animate.
+  await page.waitForFunction(() => /\d/.test(document.getElementById("runAny").textContent), null, { timeout: 20000 });
+  check(await page.textContent("#runAny") === anyN.toLocaleString("en-US"), `${tag} headline is final before the run ends`);
   await page.waitForFunction(() => ["done", "error"].includes(document.body.dataset.run), null, { timeout: 20000 });
   check(await page.evaluate(() => document.body.dataset.run) === "done", `${tag} in-browser audit did not finish`);
   check(await page.textContent("#runAny") === anyN.toLocaleString("en-US"), `${tag} headline count`);
